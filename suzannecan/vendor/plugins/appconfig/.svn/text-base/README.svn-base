@@ -1,0 +1,49 @@
+## FEATURE SUMMARY
+
+This plugin provides for easy externalized configurization in a YML file:
+
+- Common and environment-specific configuration contained in a single YML file.
+
+- Capistrano task to preserve configuration file from release to release.
+
+
+## USAGE
+
+Place configuration elements common to all environments in the common area as 
+demonstrated below:
+
+	# Configuration for ALL environments.
+	common: &common
+	  app_name: your_app_name_here
+	
+Place environment-specific elements under appropriate environment as shown
+below:
+
+	# Configuration for PRODUCTION environment.
+	production:
+	  <<: *common
+	  google_api: some_long_api_key_here
+	
+To obtain the values from anywhere in your code, simply access the attributes
+of the environment like so:
+
+	puts AppConfig.app_name
+	puts AppConfig.google_api
+	
+
+## DEPLOYMENT
+
+To preserve the configuration values across releases, call the symlink_app_config
+task from within the after_update_code task.
+
+	task :after_update_code, :roles => :app do
+		symlink_app_config
+	end
+	
+To update the app.yml file for the first time or for subsequent times, the task
+update_app_config can be used as below:
+
+	cap update_app_config
+	
+This takes the app.yml file from the config directory of the application and
+uploads it to the release path on the server.

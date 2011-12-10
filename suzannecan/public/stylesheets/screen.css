@@ -1,0 +1,11 @@
+/*
+Title:  Screen styles and IE/Win patches
+Author: Bill Eisenhauer
+Credit: Based on Dan Cederholm's framework
+*/
+
+/* Import stylesheets and hide from IE/Mac \*/
+@import url("core.css");
+@import url("formtastic.css");
+@import url("formtastic_changes.css");
+/* end Import/Hide */

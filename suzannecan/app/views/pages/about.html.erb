@@ -1,0 +1,40 @@
+<% 
+  title 'About Suzanne Can' 
+  desc =<<-DESC.strip
+    We provide personal and business assistance 
+    services.  Specialities include running simple errands, event and party 
+    planning, and interior decorating.  
+  DESC
+  description desc
+  kws =<<-KWS.strip
+    corporate environment,organization,time management,balance,interior decorating,
+    parties,luncheons
+  KWS
+  keywords kws 
+%>
+<div id="main">
+  <h1>About Me</h1>
+  <h2>Who is Suzanne?</h2>
+  <p>
+    My name is Suzanne Eisenhauer.
+  </p>
+  <p>
+    After 20 years as a legal secretary in a fast-paced corporate environment
+    where organization and time management was key, I decided to find more
+    balance in my life and embark on a career that is both rewarding to me and
+    beneficial to others.
+  </p>
+  <p>
+    My organization and interior decorating skills have been fine-tuned within
+    my own home, as well as friends' homes, and in the offices of my former 
+    associates.
+  </p>
+  <p>
+    I have also been responsible for organizing numerous parties/luncheons (big
+    and small) over my legal career.
+  </p>
+</div>
+<hr/>
+<div id="sidebar">
+  <%= render :partial => 'shared/contact' %>
+</div>

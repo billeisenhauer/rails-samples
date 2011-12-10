@@ -1,0 +1,109 @@
+8
+
+dir
+242
+http://dev.billeisenhauer.com/svn/projects/clickstream/trunk/vendor/plugins/appconfig
+http://dev.billeisenhauer.com/svn/projects
+
+
+
+2007-06-24T13:31:45.658451Z
+185
+bill_eisenhauer
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+008f8a41-23ac-db11-9a89-001422107726
+
+test
+dir
+
+Rakefile
+file
+
+
+
+
+2007-07-31T02:52:32.000000Z
+f1fc106690d41d01de10dab5fa0d3da5
+2007-06-24T13:31:45.658451Z
+185
+bill_eisenhauer
+
+init.rb
+file
+
+
+
+
+2007-07-31T02:52:32.000000Z
+e44b9aa8b0c2f55a7fb71b9bde22b80d
+2007-06-24T13:31:45.658451Z
+185
+bill_eisenhauer
+
+lib
+dir
+
+install.rb
+file
+
+
+
+
+2007-07-31T02:52:32.000000Z
+41b57f9d9d282a9f7180d12e1c5cb949
+2007-06-24T13:31:45.658451Z
+185
+bill_eisenhauer
+
+MIT-LICENSE
+file
+
+
+
+
+2007-07-31T02:52:32.000000Z
+6af58aef2cd3179cc324bf9cc53a3ca8
+2007-06-24T13:31:45.658451Z
+185
+bill_eisenhauer
+
+about.yml
+file
+
+
+
+
+2007-07-31T02:52:32.000000Z
+525d49c628f7e798dd987551a746d11a
+2007-06-24T13:31:45.658451Z
+185
+bill_eisenhauer
+
+template
+dir
+
+README
+file
+
+
+
+
+2007-07-31T02:52:32.000000Z
+b576f339b99ee17a71ff95ec5e41c3cd
+2007-06-24T13:31:45.658451Z
+185
+bill_eisenhauer
+

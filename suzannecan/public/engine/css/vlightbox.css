@@ -1,0 +1,28 @@
+#vlightbox { zoom:1; }
+#vlightbox span{ display:block; }
+#vlightbox a{
+	display:-moz-inline-stack;
+	display:inline-block;
+	zoom:1;
+	*display:inline;
+	position:relative;
+	vertical-align:top;
+	width:160px;
+	margin:5px;
+	padding:6px;
+	border:solid 1px #b8b8b8;
+	background-color:#f4f5f5;
+	font-family:Trebuchet,Tahoma,Arial,sans-serif;
+	font-size:11px;
+	font-weight:normal;
+	text-align:center;
+	opacity:0.87;
+}
+#vlightbox a img{
+	display:block;
+	border:none;
+	margin:0px;
+}
+#vlightbox a:hover{
+	opacity:1;
+}

@@ -1,0 +1,72 @@
+<% 
+  title 'Home'
+  desc =<<-DESC.strip
+    We offer Personal &amp; business assistance, 
+    party &amp; event planning, and interior decorating services in the Dallas 
+    area at affordable rates to save you time and balance your life.  
+  DESC
+  description desc
+  kws =<<-KWS.strip
+    appointments,gift purchasing,home office,errands,house-sitting,chores,moving,
+    organization,event-planning,entertaining,research projects,decorating,Addison,
+    Carrollton,Coppell,Dallas,Farmers Branch,Flower Mound,Grapevine,Irving,
+    Las Colinas,Plano,Richardson,Southlake,Valley Ranch
+  KWS
+  keywords kws
+%>
+<div id="home-pitch-wrapper">
+  <div id="home-pitch">
+    <%- flash.each do |name, msg| -%>
+      <%= content_tag :h4, msg, :class => "#{name}" %>
+    <%- end -%>
+    <div id="home-pitch-main">
+      <%= image_tag('collage.png', 
+                    :width => 370, :height => 342, :style => "float:right;",
+                    :alt => 'As a personal concierge, I can help with sizeable to-do lists and too little time to restore balance to your life'
+          )
+      %>
+      <h1>Running short on time?  Lots to do?</h1>
+      <h2>Let Suzanne Can simplify your life.</h2>
+      <h3>
+        I offer a variety of <%= link_to 'personal &amp; business assistance services', pages_path('services'), :title => 'A listing of personal assistant services and more.' %>: 
+        from running simple errands to interior decorating to planning parties and events big and
+        small.
+      </h3>
+      <h3>
+        My <%= link_to 'rates', pages_path('rates'), :title => 'Rates &amp; Policies.' %> are affordable and I'm
+        ready to help.
+      </h3>
+      <%= link_to 'Contact', contact_path, :class => 'contact', :title => 'Leave a message, email, or call us.' %>
+    </div>
+  </div>
+</div>
+<div id="service-teasers">
+  <h3>Need help with any of these?</h3>
+  <ul class="service-cloud">
+    <li><%= link_to 'Interior Decorating', services_path('decorating'), :class => 'photo', :title => 'One of my specialties: let me fill your rooms with fabulous.' %></li>
+    <li><%= link_to 'Party Planning', pages_path('services'), :title => 'Another specialty, leave all the party planning details to me.' %></li>
+    <li><%= link_to 'Event Planning', pages_path('services'), :title => 'Planning a corporate event? Leave all the details to me.' %></li>
+    <li><%= link_to 'Home Organization', pages_path('services'), :title => 'Remove the clutter and get organized.' %></li>
+    <li><%= link_to 'Personal Services', pages_path('services'), :title => 'Basic personal assistant services.' %></li>
+    <li><%= link_to 'Research Projects', pages_path('services'), :title => 'Let me do the legwork on your research projects.' %></li>
+    <li><%= link_to 'Appointments', pages_path('services'), :title => 'Let me handle your household appointments.' %></li>
+    <li><%= link_to 'Home Office', pages_path('services'), :title => 'Tedious clerical work, for example filing or paying bills.' %></li>
+    <li><%= link_to 'Household Errands', pages_path('services'), :title => 'Basic household chores that you don\'t have time for.' %></li>
+    <li><%= link_to 'House Sitting', pages_path('services'), :title => 'Tending to your home while you are away.' %></li>
+    <li><%= link_to 'Personal Shopping', pages_path('services'), :title => 'If you know what to buy, but don\'t have the time.' %></li>
+    <li><%= link_to 'Moving', pages_path('services'), :title => 'Preparing for a move or organizing after one.' %></li>  
+    <li><%= link_to 'Entertaining', pages_path('services'), :title => 'Let me help you plan your entertaining menu.' %></li>
+    
+  </ul>
+  <h3>...and many more!</h3>
+  <hr/>
+  <h3>Happily serving the DFW Metroplex including Dallas, Addison, Carrollton, Coppell, Farmers Branch, Flower Mound, Grapevine, Irving, Las Colinas, Plano, Richardson, Southlake, and Valley Ranch.</h3>
+</div>
+
+<% content_for(:js) do %>
+  <script type="text/javascript">
+    if ($('h4.notice').length) {
+      pageTracker._trackPageview("/thanks");
+    }
+  </script>
+<% end %>

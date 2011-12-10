@@ -1,0 +1,14 @@
+# Configuration for ALL environments.
+common: &common
+
+# Configuration for DEVELOPMENT environment.
+development:
+  <<: *common
+
+# Configuration for TEST environment.
+test:
+  <<: *common
+
+# Configuration for PRODUCTION environment.
+production:
+  <<: *common

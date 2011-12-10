@@ -1,0 +1,27 @@
+<%
+  title 'Page Not Found'
+  desc =<<-DESC.strip
+    Its frustrating to not find what you are looking for.  This page contains
+    some links to help you find information about Suzanne Can's owner, its
+    services, its rates, its frequently asked questions, and its contact page.  
+  DESC
+  description desc
+%>
+<div id="main">
+  <h1>Oops!</h1>
+  <p>
+		The page you are looking for cannot be found.  <strong>See the list below for some
+	   better options.</strong>
+  </p>
+  <ul id="site-shortcuts">
+  	<li><a title="About Me" href="/about">About Me</a></li>
+  	<li><a title="Services" href="/services">Services</a></li>
+  	<li><a title="Rates" href="/rates">Rates</a></li>
+  	<li><a title="FAQs" href="/faq">Frequently Asked Questions</a></li>
+  	<li><a title="Contact me" href="/contact">Contact Me</a></li>
+  </ul>
+</div>
+<hr/>
+<div id="sidebar">
+  <%= render :partial => 'shared/contact' %>
+</div>

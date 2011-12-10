@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title><%= yield(:title) || AppConfig.app_title %></title>
+    <meta name="description" content="<%= yield(:description) || AppConfig.app_description.chop %>" />
+    <meta name="keywords" content="<%= yield(:keywords) || AppConfig.app_keywords.chop %>" />
+    <meta name="author" content="Bill Eisenhauer" />
+    <meta name="google-site-verification" content="4KqInu-KRz5vHPTKbodUJTrslz2w3k6oaNnfvRFXOC8" />
+    <meta name="msvalidate.01" content="FD0454B08A26BBA5314A459B6C03B3EE" />
+    <meta name="y_key" content="15dea298e5f39870" />
+    <%= stylesheet_link_merged :base %> 
+    <!--[if IE 7]>
+      <link rel="stylesheet" type="text/css" href="/stylesheets/ie7.css" media="screen,projection" rel="stylesheet"/>
+    <![endif]-->
+    <!--[if IE 8]>
+      <link rel="stylesheet" type="text/css" href="/stylesheets/ie8.css" media="screen,projection" rel="stylesheet"/>
+    <![endif]-->   
+    <%= javascript_include_merged :base %>
+    <%= yield(:head) %>
+  </head>
+  <body id="<%= body_id %>" class="<%= body_class %>">
+    <p id="skip"><a href="#main">Skip to content</a></p>
+    <div id="header-wrapper">
+      <div id="header">
+        <%= render :partial => "shared/header" %>
+      </div>
+    </div>
+    <div id="container">
+      <div id="wrapper">
+        <%= yield :layout %>
+      </div>
+    </div>
+    <hr/>
+    <div id="footer">
+      <div id="footer-wrapper">
+        <%= render :partial => "shared/footer" %>
+      </div>
+    </div>
+    <%= render :partial => "shared/analytics" %>	
+    <%= yield :js_include %>
+    <%= yield :js %>
+    <%= javascript_include_merged :bookmark %>
+  </body>
+</html>

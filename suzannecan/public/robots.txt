@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: /category/
+Disallow: /2009/11/
+Disallow: /blog/
+Allow: /
+Sitemap: http://suzannecan.com/sitemap.xml
+

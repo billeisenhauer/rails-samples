@@ -1,0 +1,106 @@
+<% 
+  title 'Frequently Asked Questions' 
+  desc =<<-DESC.strip
+    Suzanne Can likes to keep things simple, but frequenty-asked questions are answered here.  
+  DESC
+  description desc
+  kws =<<-KWS.strip
+    personal concierge,Carrollton,Coppell,Dallas,Flower Mound,Grapevine, 
+    Las Colinas,Southlake,Valley Ranch
+  KWS
+  keywords kws
+%>
+<div id="main">
+  <h1>Frequently Asked Questions</h1>
+  <ul id="faq-nav">
+    <li>
+      <a href="#concierge">What is a concierge?</a>
+    </li>
+    <li>
+      <a href="#simplify">How can Suzanne Can simplify my life?</a>
+    </li>
+    <li>
+      <a href="#areas">What areas do you service?</a>
+    </li>
+    <li>
+      <a href="#payment">What forms of payment does Suzanne Can accept for services rendered?</a>
+    </li>
+    <li>
+      <a href="#notice">How much notice do you require in order to fulfill a request for service?</a>
+    </li>    
+    <li>
+      <a href="#confidential">Will my personal information be kept confidential?</a>
+    </li>    
+    <li>
+      <a href="#cancellation">How much notice do you need for a service cancellation?</a>
+    </li>
+    <li>
+      <a href="#purchases">If I need Suzanne Can to make any third party purchase(s) on my behalf how is that handled?</a>
+    </li>
+    <li>
+      <a href="#markups">Is there a mark-up fee for items purchased through Suzanne Can?</a>
+    </li>        
+    <li>
+      <a href="#unlisted">What if I need something that is not listed on your website?</a>
+    </li>    
+    
+  </ul>
+  <dl id="faq">
+    <dt id="concierge">What is a concierge?</dt>
+    <dd>
+      A personal assistant, or personal aide, is someone who assists in daily 
+      business and personal tasks.
+    </dd>
+    <dt id="simplify">How can Suzanne Can simplify my life?</dt>
+    <dd>
+      When you have too many things to do and not enough time, Suzanne Can is
+      there to give you a helping hand.  Do the things you enjoy and leave the
+      rest to me.
+    </dd>
+    <dt id="areas">What areas do you service?</dt>
+    <dd>
+      I service Carrollton, Coppell, Dallas, Flower Mound, Grapevine, 
+      Las Colinas, Southlake, and Valley Ranch.
+    </dd>
+    <dt id="payment">What forms of payment does Suzanne Can accept for services rendered?</dt>
+    <dd>
+      Cash, personal checks, and money orders.
+    </dd>
+    <dt id="notice">How much notice do you require in order to fulfill a request for service?</dt>
+    <dd>
+      Twenty-four hour advance notice is preferred.
+    </dd>
+    <dt id="confidential">Will my personal information be kept confidential?</dt>
+    <dd>
+      Your information will be held in complete confidence and shared with no one.
+    </dd>
+    <dt id="cancellation">How much notice do you need for a service cancellation?</dt>
+    <dd>
+      24 hours notice for any cancellation is requested so my time is available 
+      for other clients who may need my help or for clients with short notice 
+      or emergency requests.
+    </dd>
+    <dt id="purchases">If I need Suzanne Can to make any third party purchase(s) on my behalf how is that handled?</dt>
+    <dd>
+      Costs of any third party purchases would be in addition to my service 
+      fees.  I require you to provide a cash or check deposit prior to any 
+      purchases made.  I will pay for any purchases first from the deposit.
+    </dd>
+    <dt id="markups">Is there a mark-up fee for items purchased through Suzanne Can?</dt>
+    <dd>
+      <strong>No.</strong> Clients of Suzanne Can are only charged for the actual cost of goods 
+      or services purchased.
+    </dd>    
+    <dt id="unlisted">What if I need something that is not listed on your website?</dt>
+    <dd>
+      Not a problem. The services listed on the website are examples of some of 
+      my offerings &ndash; it is not an exhaustive list. Each client is different 
+      and each client's needs are different. My objective is to exceed my client's 
+      needs.
+    </dd>    
+  </dl>  
+</div>
+<hr/>
+<div id="sidebar">
+  <%= render :partial => 'shared/contact' %>
+</div>

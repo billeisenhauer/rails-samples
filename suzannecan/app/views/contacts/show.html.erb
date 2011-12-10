@@ -1,0 +1,67 @@
+<%
+  title 'Contact Me'
+  desc =<<-DESC.strip
+    The email address and phone number for Suzanne Can is listed on this page.
+    You can also leave a message on this page. 
+  DESC
+  description desc
+%>
+<div id="main">
+  <h1>Contact Me</h1>
+  <p>
+    If you would like to request service or if you just have a question, please
+    drop me a note with the form below.
+  </p>
+  <% semantic_form_for @contact, :url => contact_path do |f| %>
+    <%= f.error_messages %>
+    <% f.inputs do %>
+      <%= 
+        f.input :name,   
+          :label => 'Your Name',
+          :input_html => { :class => 'large' } 
+      %>
+      <%= 
+        f.input :email,    
+          :hint => 'I need a phone number and/or an email address.',
+          :input_html => { :class => 'large' } 
+      %>
+      <%= 
+        f.input :phone,    
+          :hint => 'I need a phone number and/or an email address.',
+          :input_html => { :class => 'medium' } 
+      %>
+      <%= 
+        f.input :city,    
+          :hint => 'I service Dallas and certain surrounding cities.',
+          :input_html => { :class => 'large' } 
+      %>
+      <%= 
+        f.input :message,  
+          :as => :text, 
+          :hint => 'Tell me about the service you need or ask me a question.',
+          :input_html => { :class => 'large', :cols => 48, :rows => 7 } 
+      %>
+    <% end %>
+    <%= f.commit_button "Send Message" %>
+  <% end %>
+</div>
+<hr/>
+<div id="sidebar">
+  <h3>Hours of Operation</h3>
+  <p class="hours">Monday - Friday<br/>8:30am - 5:30pm</p>
+  <h3>Email</h3>
+  <p>
+    <%= mail_to 'suzanne@suzannecan.com' %>
+  </p>
+  <h3>FAQs</h3>
+  <p>
+    Maybe I've already answered your question in my 
+    <%= link_to 'frequently asked questions', pages_path('faq'), :title => 'Frequently Asked Questions' %>.
+  </p>
+</div>
+
+<% content_for(:js) do %>
+  <script type="text/javascript">
+    $('#contact_name').focus();
+  </script>
+<% end %>

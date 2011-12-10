@@ -1,0 +1,32 @@
+<div id="contact-me">
+  <div id="contact-me-wrapper">
+    <h2><%= link_to 'Contact', contact_path, :title => 'Get my contact details.' %></h2>
+  </div>
+</div>
+<div id="pitch">
+  <h3>
+    <strong>Suzanne Can</strong> is here to make your life better by saving you time.  Contact
+    me now to arrange service.
+  </h3>
+  <h3>Hours of Operation</h3>
+  <p class="hours">Monday - Friday<br/>8:30am - 5:30pm</p>
+  <h3>Email</h3>
+  <p>
+    <%= mail_to 'suzanne@suzannecan.com' %>
+  </p>
+</div>
+<div id="testimonials">
+  <% if @testimonial -%>
+    <dl class="hreview">
+    	<dt class="summary"><%= h @testimonial.title %></dt>
+    	<dd>
+    		<blockquote class="description">
+    			&#8220;<%= h @testimonial.quote %>&#8221;
+    		</blockquote>
+    		<cite>&#8212; 
+    		  <span class="fn"><%= h @testimonial.byline %></span>
+    		</cite>
+    	</dd>
+    </dl>
+  <% end -%>
+</div>

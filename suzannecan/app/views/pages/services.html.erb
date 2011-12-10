@@ -1,0 +1,157 @@
+<% 
+  title 'Services' 
+  desc =<<-DESC.strip
+    We offer a variety of personal &amp; business assistance, party &amp; event
+    planning, and interior decorating services.  
+  DESC
+  description desc
+  kws =<<-KWS.strip
+    interior decorating,event planning,home organization,efficiency,dinner reservations,
+    theater tickets,travel reservations,home renovations,project bids,appointments,
+    filing,clerical work,pay bills,grocery shopping,dry cleaning,pet supplies,
+    returns,exchanges,post office,collect mail,water plants,personal shopping,
+    moving,party planning,vendor management,baby showers,closet organization,
+    garage organization,bridal showers,professional organizer
+  KWS
+  keywords kws
+%>
+<div id="main">
+  <h1>Services</h1>
+  <p>
+    I specialize in a variety of services tailored specifically to meet your 
+    needs. By allowing Suzanne Can to help manage your time, you are 
+    allowing yourself to manage your life.
+  </p>
+  <h2 id="basic-services">Basic Services<em> $20/hr&nbsp;</em></h2>
+  <ul class="service-column">
+    <h3>Concierge</h3>
+    <ul class="service-list">
+      <li>Dinner Reservations</li>
+      <li>Theater Tickets</li>
+      <li>Travel Reservations</li>
+      <li>Personal Assistant</li>
+    </ul>
+  </ul>
+  <ul class="service-column">
+    <h3>Research Projects</h3>
+    <ul class="service-list">
+      <li>Home Renovations</li>
+      <li>Obtain Project Bids</li>
+      <li>New Purchases</li>
+    </ul>
+  </ul>
+  
+  <h2 id="plus-services" style="clear:both;">Plus Services<em> $25/hr&nbsp;</em></h2>
+  
+  <ul class="service-column">
+    <h3>Appointments</h3>
+    <ul class="service-list">
+      <li>Cable / Internet</li>
+      <li>Appliance Repairs</li>
+      <li>Home Repairs</li>
+      <li>Contractors</li>
+      <li>Deliveries</li>
+      <li>Appraisals</li>
+      <li>Phone Services</li>
+    </ul>
+    <h3>Home Office</h3>
+    <ul class="service-list">
+      <li>Filing</li>
+      <li>Out-of-office Errands</li>
+      <li>Print / Copy Dropoffs</li>
+      <li>Clerical Work</li>
+      <li>Pay Bills</li>
+      <li>Sort Mail</li>
+    </ul>
+  </ul>
+  
+  <ul class="service-column">
+    <h3>Household Errands</h3>
+    <ul class="service-list">
+      <li>Grocery Shopping</li>
+      <li>Dry Cleaning</li>
+      <li>Pay Bills</li>
+      <li>Pet Supplies</li>
+      <li>Returns / Exchanges</li>
+      <li>Post Office</li>
+    </ul>
+    <h3>House Sitting</h3>
+    <ul class="service-list">
+      <li>Collect Mail &amp; Newspapers</li>
+      <li>Water Plants</li>
+      <li>Security Check</li>
+    </ul>
+  </ul>
+  
+  <ul class="service-column">
+    <h3>Personal Shopping</h3>
+    <ul class="service-list">
+      <li>Assist with Gift Ideas</li>
+      <li>Purchase Gifts</li>
+      <li>Locate rare / hard-to-find items</li>
+      <li>Gift Wrapping</li>
+    </ul>
+    <h3>Moving</h3>
+    <ul class="service-list">
+      <li>Packing</li>
+      <li>Unpacking</li>
+      <li>Organization of New Home</li>
+    </ul>
+  </ul>
+  
+  <h2 id="premium-services" style="clear:both;">Premium Services<em> $40/hr&nbsp;</em></h2>
+  
+  <ul class="service-column">
+    <h3><%= link_to 'Interior Decorating', services_path('decorating'), :class => 'photo', :title => '' %></h3>
+    <ul class="service-list">
+      <li>Design Ideas</li>
+      <li>Home Decor</li>
+      <li>Furniture</li>
+      <li>Paint</li>
+      <li>Redesign</li>
+      <li>Home Renovations</li>
+    </ul>
+    <h3>Home Organization</h3>
+    <ul class="service-list">
+      <li>Home</li>
+      <li>Closets</li>
+      <li>Garage</li>
+      <li>Home Office</li>
+      <li>Downsizing</li>
+      <li>Estate Consolidation</li>
+    </ul>
+  </ul>
+  
+  <ul class="service-column">
+    <h3>Entertaining</h3>
+    <ul class="service-list">
+      <li>Planning</li>
+      <li>Vendor Management</li>
+      <li>Rentals</li>
+      <li>Shopping</li>
+      <li>Venue Selection</li>
+      <li>Decor</li>
+      <li>Invitations</li>
+    </ul>
+  </ul>
+  
+  <ul class="service-column">
+    <h3>Event Planning</h3>
+    <ul class="service-list">
+      <li>Party Planning</li>
+      <li>Corporate Events</li>
+      <li>Baby Showers</li>
+      <li>Bridal Showers</li>
+      <li>Special Dates</li>
+    </ul>
+  </ul>
+
+  <p style="clear:both;">
+    Didn't find the service you were looking for?  <%= link_to 'Drop me a note.', contact_path, :title => 'Drop me a note...' %>.
+  </p>
+  <p >I work Monday through Friday 8:30am to 5:30pm.</p>
+</div>
+
+<div id="sidebar">
+  <%= render :partial => 'shared/contact' %>
+</div>

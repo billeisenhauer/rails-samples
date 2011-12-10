@@ -1,0 +1,52 @@
+8
+
+dir
+242
+http://dev.billeisenhauer.com/svn/projects/clickstream/trunk/vendor/plugins/appconfig/lib
+http://dev.billeisenhauer.com/svn/projects
+
+
+
+2007-06-24T13:31:45.658451Z
+185
+bill_eisenhauer
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+008f8a41-23ac-db11-9a89-001422107726
+
+appconfig_recipes.rb
+file
+
+
+
+
+2007-07-31T02:52:32.000000Z
+d5e6a496325f2c71da33a360466a16bf
+2007-06-24T13:31:45.658451Z
+185
+bill_eisenhauer
+
+appconfig.rb
+file
+
+
+
+
+2007-07-31T02:52:32.000000Z
+c262b4cf7626e5fa91f70ae46cf028f0
+2007-06-24T13:31:45.658451Z
+185
+bill_eisenhauer
+

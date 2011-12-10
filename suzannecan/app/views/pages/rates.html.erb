@@ -1,0 +1,117 @@
+<% 
+  title 'Rates &amp; Policies'
+  desc =<<-DESC.strip
+    Suzanne Can has a straight-forward pricing structure and common-sense
+    policies.  Rates from $20 to $40 per hour depending upon what you need.   
+  DESC
+  description desc
+  kws =<<-KWS.strip
+    service rates,basic services,plus services,premium services,reservations,
+    reminder services,online purchases,research,errands,mileage,travel
+  KWS
+  keywords kws
+%>
+<div id="main">
+  <h1>Rates</h1>
+  <p>
+    Its real simple.  I charge by the hour with a one hour minimum and I have
+    three service level tiers.
+  </p>
+  <table id="service-rates" cellspacing="0" cellpadding="0">
+    <tr>
+      <td class="service-level">Basic</td>
+      <td class="service-rate">$20/hr</td>
+      <td class="service-desc">
+        <a href="/services#basic-services">
+          These services consist of any tasks performed at my office on your 
+          behalf (e.g. reservations, reminder services, online purchases, research, 
+          etc.) 
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td class="service-level">Plus</td>
+      <td class="service-rate">$25/hr</td>
+      <td class="service-desc">
+        <a href="/services#plus-services">
+          These services include any tasks that require pickup or delivery, 
+          waiting services (up to 4 hours), and generally any errands performed
+          outside my office.
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td class="service-level">Premium</td>
+      <td class="service-rate">$40/hr</td>
+      <td class="service-desc">
+        <a href="/services#premium-services">
+          These services include any organizing, decorating, entertaining, or 
+          event planning projects which involve additional time, resources, and
+          coordination. 
+        </a>
+      </td>
+    </tr>
+  </table>
+  <h2>Policies</h2>
+  <ul id="policy-list">
+    <li>
+      <p>
+        Standard business hours are Monday through Friday, 8:30am to 5:30pm.
+        Service requests outside of normal business hours will be subject to
+        an additional charge of $10 per hour (if accepted).
+      </p>
+    </li>
+    <li>
+      <p>
+        A 24-hour notice is requested on all services.
+      </p>
+    </li>
+    <li>
+      <p>
+        A 24 hour notice for any cancellation is requested.
+      </p>
+    </li>
+    <li>
+      <p>
+        There is a one-hour minimum on all requests for service.  Service calls
+        that exceed a one-hour period will be calculated at 15-minute intervals.
+        Thus, you will not lose a full hour for a 90-minute service call.
+      </p>
+    </li>
+    <li>
+      <p>
+        Materials, expenses, and taxes are all additional charges on top of the
+        hourly rates.
+      </p>
+    </li>
+    <li>
+      <p>
+        Mileage is included in the hourly rate for travel within a 20-mile
+        perimeter.  Travel beyond that distance will be charged an additional
+        rate of 45¢ per mile.
+      </p>
+    </li>
+    <li>
+      <p>
+        All information regarding clients of Suzanne Can is held in the 
+        strictest confidence and is not shared with anyone.
+      </p>
+    </li>
+    <li>
+      <p>
+        All services will be performed by Suzanne Can as efficiently and 
+        safely as possible.
+      </p>
+    </li>
+    <li>
+      <p>
+        Suzanne Can reserves the right of refusal to participate in activities
+        deemed dangerous, illegal, or unethical.
+      </p>
+    </li>
+  </ul>
+</div>
+
+<div id="sidebar">
+  <%= render :partial => 'shared/contact' %>
+</div>

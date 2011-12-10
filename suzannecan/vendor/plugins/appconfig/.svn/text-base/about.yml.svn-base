@@ -1,0 +1,6 @@
+summary: Enables yml-based configuration through an externalizeable config file.
+version: 0.1
+author: Bill Eisenhauer
+homepage: http://www.billeisenhauer.com
+rails_version: 1.2+
+license: MIT
