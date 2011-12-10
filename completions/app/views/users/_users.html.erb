@@ -1,0 +1,35 @@
+<% if @users.any? -%>
+  <%= render :partial => 'filters' %>
+  <%= render :partial => 'search' %>
+<% end -%>
+<% form_tag(bulk_users_path, :method => :put, :style => 'clear:both;') do %>
+  <%= render :partial => 'bulk_actions' %>
+  <%= will_paginate @users, :inner_window => 1 %>
+  <div class="clear"/>
+  <% if @users.any? -%>
+    <table id="users" class="widefat fixed fixed-width" cellspacing="0" >
+    	<thead>
+     		<tr>
+     		  <th class="manage-column column-cb check-column bulk-action-col" scope="col">
+     		    <%= check_box_tag "user-bulk-actions", '1', false, :class => 'toggle' %>
+     		  </th>
+     		  <th class="manage-column column-username" scope="col"><%= sortable_heading('Username', 'username', parameterized_link, 'username asc') %></th>
+     			<th class="manage-column column-role" scope="col"><%= sortable_heading('Role', 'role', parameterized_link) %></th>
+     			<th class="manage-column column-sites" scope="col">Sites</th>
+     			<th class="manage-column column-last-login-at" scope="col"><%= sortable_heading('Last Login At', 'last_login_at', parameterized_link) %></th>
+     		</tr>
+    	</thead>
+    	<tbody>
+    		<%= render :partial => 'user', :collection => @users %>
+    	</tbody>			
+    </table>
+    <%= will_paginate @users, :inner_window => 1 %>
+  <% else -%>
+    <p>No users found.</p>
+  <% end -%>
+<% end %>
+
+<% content_for(:js_include) do %>
+  <%= javascript_include_tag 'checkbox_toggle.js' %>
+  <%= javascript_include_tag 'emptycell.js' %>
+<% end %>

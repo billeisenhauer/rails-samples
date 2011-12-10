@@ -1,0 +1,12 @@
+<h1><%= @tag_reader.reader %></h1>
+<p>
+  <strong>Last Reported At</strong><br/>
+  <%= last_reported_at_for(@tag_reader) %>
+</p>
+<p>
+  <strong>Site</strong><br/>
+  <%= @tag_reader.site_name %>
+</p>
+<p class="back-link">
+  <%= link_to "Back to Tag Readers list", last_tag_readers_path %>
+</p>

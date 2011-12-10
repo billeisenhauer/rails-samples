@@ -1,0 +1,5 @@
+<h1>
+  Categories
+  <% if search_param? -%><em>Search results for '<%= params[:search] %>'</em><% end -%>
+</h1>
+<%= render :partial => 'categories' %>

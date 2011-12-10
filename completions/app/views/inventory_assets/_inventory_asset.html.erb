@@ -1,0 +1,63 @@
+<tr id="inventory-asset-<%= inventory_asset.id %>" class="<%= inventory_asset.state %> <%= tr_status_class_for(inventory_asset) %> <%= cycle("odd", "even") %>">
+  <td class="cb column-cb"><%= check_box_tag "inventory_asset_ids[]", inventory_asset.id, false, :class => 'toggle-target', :id => "inventory_asset_ids_#{inventory_asset.id}" %></td>
+  <td class="column-actions">
+    <% if permitted_to?(:edit, :inventory_assets) -%>
+	    <%= edit_inventory_asset_link(inventory_asset) %>
+	  <% end -%>
+	  <% if inventory_asset.splittable? && permitted_to?(:new_split, :inventory_assets) -%>
+		  <%= split_inventory_asset_link(inventory_asset) %>
+		<% end -%>
+    <% if permitted_to?(:destroy, :inventory_assets) -%>
+		  <%= destroy_inventory_asset_link(inventory_asset) %>
+		<% end -%>
+		<% if permitted_to?(:show, :revisions) -%>
+		  <%= inventory_asset_revisions_link(inventory_asset) %>
+		<% end -%>
+  </td>
+  <td class="state column-state"><%= inventory_asset.state.upcase.first %></td>
+  <td class="pe column-pe"><%= h inventory_asset.pe_name %></td>
+	<td class="client column-client"><%= h inventory_asset.client_name %></td>
+	<td class="project column-project"><%= h inventory_asset.project %></td>
+	<td class="ocs_g column-ocs-g"><%= h inventory_asset.ocs_g %></td>
+  <td class="field column-field"><%= h inventory_asset.field %></td>
+  <td class="well column-well"><%= h inventory_asset.well %></td>
+  <td class="rfq-number column-rfq-number"><%= h inventory_asset.rfq_number %></td>
+  <td class="vendor column-vendor"><%= h inventory_asset.vendor %></td>
+  <td class="po-number column-po-number"><%= h inventory_asset.po_number %></td>
+  <td class="ordered-on column-ordered-on"><%= h mmddyy(inventory_asset.ordered_on) %></td>
+  <td class="days-lead-time column-days-lead-time"><%= h inventory_asset.days_lead_time %></td>
+  <td class="expected-delivery-on column-expected-delivery-on"><%= h mmddyy(inventory_asset.expected_delivery_on) %></td>
+  <td class="category column-category"><%= h inventory_asset.category_name %></td>
+  <td class="part column-part"><%= h inventory_asset.part_number %></td>
+  <td class="description column-description"><%= h truncate(inventory_asset.description, :length => 60) %></td>
+  <td class="quantity-ordered column-quantity-ordered"><%= h inventory_asset.quantity_ordered %></td>
+  <td class="quantity-received column-quantity-received"><%= h inventory_asset.quantity_received %></td>
+  <td class="quantity-installed column-quantity-installed"><%= h inventory_asset.quantity_installed %></td>
+  <td class="quantity-on-location column-quantity-on-location"><%= h inventory_asset.quantity_on_location %></td>
+  <td class="quantity column-measurement-unit"><%= h inventory_asset.measurement_unit %></td>
+  <td class="quantity column-serial-number"><%= h inventory_asset.serial_number %></td>
+  <td class="tag-number column-tag-number"><%= h tag_number_for(inventory_asset) %></td>
+  <td class="last-seen-location column-last-seen-location"><%= h inventory_asset.last_seen_location %></td>
+  <td class="last-seen-at column-last-seen-at"><%= h inventory_asset.last_seen_at %></td>
+  <td class="unit-cost-amount column-unit-cost-amount"><%= h display_amount(inventory_asset.unit_cost_amount) %></td>
+  <td class="engineering-amount column-engineering-amount"><%= h display_amount(inventory_asset.engineering_amount) %></td>
+  <td class="additional-amount column-additional-amount"><%= h display_amount(inventory_asset.additional_amount) %></td>
+  <td class="shipping-amount column-shipping-amount"><%= h display_amount(inventory_asset.shipping_amount) %></td>
+  <td class="total-cost-amount column-total-cost-amount"><%= h display_amount(inventory_asset.total_cost_amount) %></td>
+  <td class="unit-sales-amount column-unit-sales-amount"><%= h display_amount(inventory_asset.unit_sales_amount) %></td>
+  <td class="total-sales-amount column-total-sales-amount"><%= h display_amount(inventory_asset.total_sales_amount) %></td>
+  <td class="cos column-cos"><%= h number_to_percentage(inventory_asset.cos, :precision => 0) %></td>
+  <td class="actual-delivery-on column-actual-delivery-on"><%= h mmddyy(inventory_asset.actual_delivery_on) %></td>
+	<td class="gr column-gr"><%= h inventory_asset.gr ? 'Y' : 'N' %></td>
+	<td class="gr-on column-gr-on"><%= h mmddyy(inventory_asset.gr_on) %></td>
+	<td class="tr-on column-tr-on"><%= h mmddyy(inventory_asset.tr_on) %></td>
+	<td class="tr-assignment column-tr-assignment"><%= h inventory_asset.tr_assignment_name %></td>
+	<td class="tr-status column-tr-status"><%= tr_status_for(inventory_asset) %></td>
+	<td class="fo column-fo"><%= h inventory_asset.fo %></td>
+	<td class="fo-on column-fo-on"><%= h mmddyy(inventory_asset.fo_on) %></td>
+	<td class="installed-on column-installed-on"><%= h mmddyy(inventory_asset.installed_on) %></td>
+	<td class="bill-and-hold column-bill-and-hold"><%= h inventory_asset.bill_and_hold %></td>
+	<td class="delivery-on column-delivery-on"><%= h mmddyy(inventory_asset.delivery_on) %></td>
+	<td class="description column-notes"><%= h truncate(inventory_asset.notes, :length => 60) %></td>
+	<td class="attachment column-attachment"><%= attachment_link_for(inventory_asset) %></td>
+</tr>

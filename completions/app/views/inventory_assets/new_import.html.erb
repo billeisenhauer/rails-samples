@@ -1,0 +1,11 @@
+<h2>Import Inventory</h2>
+<% semantic_form_for @import, :url => import_inventory_assets_path, :html => { :method => :put, :multipart => true }  do |f| %>
+  <%= f.error_messages %>
+  <% f.inputs do %>
+    <%= f.input :csv, :as => :file, :label => 'CSV File',
+        :hint => "Download an empty sample import file here: #{link_to('sample-import.csv', sample_import_inventory_assets_path)}" %>
+  <% end %>
+  <% f.inputs do %>
+    <%= f.commit_button "Import" %>
+  <% end %>
+<% end %>

@@ -1,0 +1,20 @@
+<tr id="tag-reader-<%= tag_reader.id %>" class="<%= cycle("odd", "even") %>">
+  <td class="cb column-cb"><%= check_box_tag "tag_reader_ids[]", tag_reader.id, false, :class => 'toggle-target', :id => "tag_reader_ids_#{tag_reader.id}" %></td>
+	<td class="tag_number column-reader">
+	  <%= link_to(tag_reader.reader, tag_reader_path(tag_reader)) %>
+	  <div class="row-actions">
+	    <% permitted_to?(:update, :tag_readers) do %>
+        <span class="edit"><%= link_to 'Edit', edit_tag_reader_path(tag_reader) %> |</span>
+      <% end %>
+      <% permitted_to?(:destroy, :tag_readers) do %>
+        <span class="delete"><%= link_to("Delete", { :action => "destroy", :id => tag_reader },
+          :confirm => "Are you sure you want to delete this tag reader?",
+          :method => :delete) %> |</span>
+      <% end %>
+      <span class="view"><%= link_to 'View', tag_reader_path(tag_reader) %></span>
+    </div>
+	</td>
+	<td class="site column-site"><%= h tag_reader.site_name %></td>
+	<td class="site column-address"><%= h tag_reader.address %></td>
+	<td class="last-reported-at column-last-reported-at"><%= last_reported_at_for(tag_reader) %></td>
+</tr>

@@ -1,0 +1,28 @@
+<% 
+  assigned_count = Tag.for_site(current_user.site).assigned.count
+  unassigned_count = Tag.for_site(current_user.site).unassigned.count 
+%>
+<ul class="list-filters">
+  <li>
+    <% link_to(tags_path(:sorted_by => 'tag_number')) do %>
+      All
+      <span class="count">(<%= Tag.for_site(current_user.site).count %>)</span>
+    <% end %>
+  </li>
+  <% if assigned_count > 0 -%>
+    <li>
+      <% link_to(tags_path(:assigned => true, :sorted_by => 'tag_number')) do %>
+        Assigned
+        <span class="count">(<%= assigned_count %>)</span>
+      <% end %>
+    </li>    
+  <% end -%> 
+  <% if unassigned_count > 0 -%>
+    <li>
+      <% link_to(tags_path(:unassigned => true, :sorted_by => 'tag_number')) do %>
+        Unassigned
+        <span class="count">(<%= unassigned_count %>)</span>
+      <% end %>
+    </li>    
+  <% end -%>
+</ul>

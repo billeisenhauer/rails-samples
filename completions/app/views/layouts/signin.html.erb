@@ -1,0 +1,36 @@
+<!DOCTYPE HTML PUBLIC “-//W3C//DTD HTML 4.01//EN” “http://www.w3.org/TR/html4/strict.dtd”>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title><%= page_title %></title>
+    <%= yield(:head) %>
+    <%= stylesheet_link_merged :signin %>
+    <%= javascript_include_merged :base %>
+	</head>
+	<body id="signin">
+    <div id="doc">
+      <div id="hd">
+        <h1>Schlumberger Completions<br/>Inventory Management System</h1>
+        <div id="logo" class="yui-g">
+      	  <div class="yui-b">
+      	    <%= image_tag('slb_logo.png', :id => 'slb-logo') %>
+      	  </div>
+      	  <div class="yui-b" id="gf-logo">
+      	    <%= image_tag('gf-lt-logo.png') %>
+      	  </div>
+        </div>
+      </div>
+      <div id="bd">
+        <div id="yui-main">
+          <%- flash.each do |name, msg| -%>
+            <%= content_tag :h4, msg, :class => "#{name}" %>
+          <%- end -%>
+        	<%= yield :layout %>
+        </div>
+      </div>      
+    </div>	  
+    <%= yield :js_include %>
+    <%= yield :js %>
+    <%= render :partial => "shared/analytics" %>
+	</body>	
+</html>

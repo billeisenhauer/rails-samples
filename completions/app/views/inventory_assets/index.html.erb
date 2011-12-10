@@ -1,0 +1,9 @@
+<h1>
+  <% if params[:for_site] %>
+    <%= params[:for_site].titleize.pluralize %>
+  <% else -%>
+    <%= inventory_assets_title %>
+  <% end -%>
+  <% if search_param? -%><em>Search results for '<%= params[:search] %>'</em><% end -%>
+</h1>
+<%= render :partial => 'inventory_assets' %>

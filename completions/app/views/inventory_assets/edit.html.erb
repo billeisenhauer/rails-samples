@@ -1,0 +1,10 @@
+<h1>Edit Inventory Asset</h1>
+
+<%= render :partial => 'form', :locals => {:button => 'Update Inventory Asset'} %>
+
+<p class="back-link">
+  <% unless @inventory_asset.new_record? %>
+    <%= link_to "Revisions", inventory_asset_revisions_path(@inventory_asset) %> |
+  <% end %>
+  <%= link_to "Back to Inventory Assets list", last_inventory_assets_path %>
+</p>

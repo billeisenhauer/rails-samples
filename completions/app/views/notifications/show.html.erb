@@ -1,0 +1,16 @@
+<h1><%= @spec.name %></h1>
+<p>
+  <strong>Site</strong><br/>
+  <%= @spec.site_name %>
+</p>
+<p>
+  <strong>Creator</strong><br/>
+  <%= @spec.creator %>
+</p>
+<p>
+  <strong>Recipients</strong><br/>
+  <%= @spec.recipients %>
+</p>
+<p class="back-link">
+  <%= link_to "Back to Notifications list", last_notifications_path %>
+</p>

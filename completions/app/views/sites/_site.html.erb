@@ -1,0 +1,21 @@
+<tr id="site-<%= site.id %>" class="<%= cycle("odd", "even") %>">
+  <td class="cb column-cb">
+    <% if site.allows_bulk_actions? -%>
+      <%= check_box_tag "site_ids[]", site.id, false, :class => 'toggle-target', :id => "site_ids_#{site.id}" %>
+    <% end -%>
+  </td>
+	<td class="site-name column-site-name">
+	  <%= link_to(display_site_with_depth(site), site_path(site)) %>
+	  <div class="row-actions">
+      <span class="edit"><%= link_to 'Edit', edit_site_path(site) %> |</span>
+      <% if site.can_destroy? -%> 
+        <span class="delete"><%= link_to("Delete", { :action => "destroy", :id => site },
+          :confirm => "Are you sure you want to delete this site?",
+          :method => :delete) %> |</span>
+      <% end -%>
+      <span class="view"><%= link_to 'View', site_path(site) %></span>
+    </div>
+	</td>
+	<td class="site-user-count column-site-user-count" scope="col"><%= site.all_users_count %></td>
+  <td class="site-tag-count column-site-tag-count" scope="col"><%= site.tags_count %></td>
+</tr>

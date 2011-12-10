@@ -1,0 +1,30 @@
+set daemon 120                                  # Poll in 2-minute intervals
+set logfile syslog facility LOG_daemon          # Default facility is LOG_USER
+set mailserver mail-nam.slb.atosorigin-asp.com  
+set alert monit@geoforce.net                    # Alert GF sys admin
+set httpd port 2812 address localhost
+    allow localhost
+    allow beisenhauer:beisenhauer
+
+check process apache with pidfile "/var/run/httpd.pid"
+    start = "/usr/sbin/apachectl start"
+    stop = "/usr/sbin/apachectl stop"
+		if cpu is greater than 60% for 2 cycles then alert
+		if cpu > 80% for 5 cycles then restart
+		if totalmem > 200.0 MB for 5 cycles then restart
+		if children > 250 then restart
+		if loadavg(5min) greater than 10 for 8 cycles then stop
+		if 3 restarts within 5 cycles then timeout
+		group server
+
+check process mysql with pidfile "/var/run/mysqld/mysqld.pid"
+		start program = "/etc/init.d/mysqld start"
+		stop program = "/etc/init.d/mysqld stop"
+		if failed host 127.0.0.1 port 3306 then restart
+		if 5 restarts within 5 cycles then timeout
+		group database
+
+check device disk1 with path /dev/sda1
+    if space usage > 90% then alert
+    if inode usage > 90% then alert
+

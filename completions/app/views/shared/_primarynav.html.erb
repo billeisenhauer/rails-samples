@@ -1,0 +1,12 @@
+<% permitted_to?(:show, :inventory_assets) do %>
+  <li class="menu-top menu-top-first menu-top-last <%= current_menu('inventory') %>" id="menu-inventory">
+  	<div class="gf-menu-image">
+  	  <%= link_to('<br />', inventory_assets_path, :title => 'Inventory') %>
+  	</div>
+  	<div class="gf-menu-toggle"><br /></div>
+  	<%= link_to('Inventory', inventory_assets_path, :class => "menu-top menu-top-first menu-top-last #{current_menu('inventory')}", :tabindex => "1") %>
+  </li>
+  <li class="gf-menu-separator"><a class="separator" href="?unfoldmenu=1"><br /></a></li>
+<% end %>
+
+

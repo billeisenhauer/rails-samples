@@ -1,0 +1,36 @@
+<% if @tags.any? -%>
+  <%= render :partial => 'filters' %>
+  <%= render :partial => 'search' %>
+<% end -%>
+<% form_tag(bulk_tags_path, :method => :put, :style => 'clear:both;') do %>
+  <%= render :partial => 'bulk_actions' %>
+  <%= will_paginate @tags, :inner_window => 1 %>
+  <div class="clear"/>
+  <% if @tags.any? -%>
+    <table id="tags" class="widefat fixed fixed-width" cellspacing="0" >
+    	<thead>
+     		<tr>
+     		  <th class="manage-column column-cb check-column bulk-action-col" scope="col">
+     		    <%= check_box_tag "tag-bulk-actions", '1', false, :class => 'toggle' %>
+     		  </th>
+     		  <th class="manage-column column-tag-number" scope="col"><%= sortable_heading('Tag Number', 'tag_number', parameterized_link, 'tag_number asc') %></th>
+     			<th class="manage-column column-site" scope="col"><%= sortable_heading('Site', 'site', parameterized_link) %></th>
+     			<th class="manage-column column-asset" scope="col"><%= sortable_heading('Inventory Asset', 'inventory_asset', parameterized_link) %></th>
+     			<th class="manage-column column-last-location" scope="col"><%= sortable_heading('Last Location', 'last_location', parameterized_link) %></th>
+     			<th class="manage-column column-last-reported-at" scope="col"><%= sortable_heading('Last Reported At', 'last_reported_at', parameterized_link) %></th>
+     		</tr>
+    	</thead>
+    	<tbody>
+    		<%= render :partial => 'tag', :collection => @tags %>
+    	</tbody>			
+    </table>
+    <%= will_paginate @tags, :inner_window => 1 %>
+  <% else -%>
+    <p>No tags found.</p>
+  <% end -%>
+<% end %>
+
+<% content_for(:js_include) do %>
+  <%= javascript_include_tag 'checkbox_toggle.js' %>
+  <%= javascript_include_tag 'emptycell.js' %>
+<% end %>

@@ -1,0 +1,9 @@
+<%= @date.to_s(:mmddyy) %><br/>
+<br/>
+<% for site_statistic in @site_statistics -%>
+<%= site_statistic.name %><br/>
+  <%= "%5d Active Assets" % site_statistic.active_assets %><br/>
+  <%= "%5d Archived Assets" % site_statistic.archived_assets %><br/>
+  <%= "%5d Tagged Assets" % site_statistic.tagged_assets %><br/>
+  <br/>
+<% end -%>

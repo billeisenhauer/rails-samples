@@ -1,0 +1,10 @@
+<div class="bulk-actions alignleft">
+  <%= link_to "Add New", new_user_path %>
+  <% if @users.any? -%>
+    |
+    <%= select_tag :bulk_action, bulk_actions_options %>
+    <input type="submit" name="bulk_action_change" value="Apply"/>
+    <%= select_tag :bulk_role, bulk_roles_options %>
+    <input type="submit" name="bulk_role_change" value="Change"/>
+  <% end -%>
+</div>

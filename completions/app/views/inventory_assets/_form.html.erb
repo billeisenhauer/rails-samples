@@ -1,0 +1,206 @@
+<% 
+  @current_link ||= 'well-info' 
+  inventory_asset = @split_inventory_asset || @inventory_asset
+%>
+<% semantic_form_for inventory_asset, :html => { :enctype => "multipart/form-data" } do |f| %>
+  <%= f.error_messages %>
+  <%= hidden_field_tag 'current_link', @current_link %>
+  <%= hidden_field_tag 'inventory_asset[parent_asset_id]', inventory_asset.parent_asset_id %>
+  <ul id="inventory-asset-form-topics">
+    <li class="first"><a id ="well-info" href='#' class="<%= current_topic_class('well-info', @current_link) %> form-topic-link">Well Info / Order Tracking / Dates</a></li>
+    <li><a id="product-info" href='#' class="<%= current_topic_class('product-info', @current_link) %> form-topic-link">Product Info</a></li>
+    <li><a id="cost-sales" href='#' class="<%= current_topic_class('cost-sales', @current_link) %> form-topic-link">Cost / Sales</a></li>
+    <li><a id="delivery-so" href='#' class="<%= current_topic_class('delivery-so', @current_link) %> form-topic-link">Delivery / SO</a></li>
+    <li><a id="notes" href='#' class="<%= current_topic_class('notes', @current_link) %> form-topic-link">Notes</a></li>
+    <li><a id="location" href='#' class="<%= current_topic_class('location', @current_link) %> form-topic-link">Location / Tagging</a></li>
+  </ul>
+  <ul id="form-topic-well-info" class="form-topic-pane" style="<%= current_pane_style('well-info', @current_link) %>">
+    <li class="form-well-info">
+      <table style="table-layout: fixed;">
+        <tr>
+          <td width="33%" valign="top">
+            <% f.inputs do %>
+              <%= f.input :pe, 
+                          :collection => User.recipient_list_for(current_user.site),
+                          :label_method => 'display_name', 
+                          :required => false,
+                          :prompt => 'Select PE' %>
+              <%= f.input :client_name, :required => false, :input_html => { :class => 'big' } %>
+              <%= f.input :project,     :required => false, :input_html => { :class => 'big' } %>
+              <%= f.input :ocs_g,       :required => false, :input_html => { :class => 'big' } %>
+              <%= f.input :field,       :required => false, :input_html => { :class => 'big' } %>
+              <%= f.input :well,        :required => false, :input_html => { :class => 'big' } %>
+              <% if inventory_asset.attachment? -%>
+                <%= attachment_link_for(inventory_asset) %>
+                <%= f.input :delete_attachment, :required => false, :as => :boolean, :label => "Remove?" %>
+              <% end -%>
+              <%= f.input :attachment,  :required => false, :as => :file %>
+            <% end %>
+          </td>
+          <td width="33%" valign="top">
+            <% f.inputs do %>
+              <%= f.input :rfq_number,  :required => false, :input_html => { :class => 'big' } %>
+              <%= f.input :vendor,      :required => false, :label => "Vendor / Supplier", :input_html => { :class => 'big' } %>
+              <%= f.input :po_number,   :required => false, :input_html => { :class => 'big' } %>
+            <% end %>
+          </td>
+          <td width="33%" valign="top">
+            <% f.inputs do %>
+              <%= f.input :ordered_on,     :required => false, :as => :string, :input_html => { :class => 'medium' } %>
+              <%= f.input :days_lead_time, :required => false, :input_html => { :class => 'medium' } %>
+              <%= f.input :expected_delivery_on,  :required => false,  :as => :string, :input_html => { :class => 'medium' } %>
+            <% end %>
+          </td>
+        </tr>
+      </table>
+    </li>
+  </ul>
+  <ul id="form-topic-product-info" class="form-topic-pane" style="<%= current_pane_style('product-info', @current_link) %>">
+    <li class="form-product-info">
+      <% f.inputs do %>
+        <%= f.input :category, :required => false, :collection => Category.for_site(current_user.site), 
+                               :label_method => :ancestry_names, :prompt => 'Uncategorized' %>
+        <%= f.input :part_number,  :required => false, :label => "Part #", :input_html => { :class => 'small' } %>
+        <%= f.input :description, :as => :text, :required => false, :input_html => { :rows => '5' } %>
+      <% end -%>
+      <table style="table-layout: fixed;">
+        <tr>
+          <td width="50%" valign="top">
+            <% if inventory_asset.split_lot? %>
+              <% f.inputs do %>
+                <li>
+                  <%= f.label :quantity_ordered %>
+                  <%= inventory_asset.quantity_ordered %>
+                </li>
+                <li>
+                  <%= f.label :quantity_received %>
+                  <%= inventory_asset.quantity_received %>
+                </li>
+                <li>
+                  <%= f.label :quantity_on_location %>
+                  <%= inventory_asset.quantity_on_location %>
+                </li>
+              <% end %>
+            <% else -%>
+              <% f.inputs do %>
+                <%= f.input :quantity_ordered, :required => false, :input_html => { :class => 'small' } %>
+                <%= f.input :quantity_received, :required => false, :input_html => { :class => 'small' } %>
+                <%= f.input :quantity_on_location, :required => false, :input_html => { :class => 'small' } %>
+              <% end -%>
+            <% end -%>
+          </td>
+          <td width="50%" valign="top">
+            <% f.inputs do %>
+              <%= f.input :quantity_installed, :required => false, :input_html => { :class => 'small' } %>
+              <%= f.input :measurement_unit, :required => false, :input_html => { :class => 'small' } %>
+              <%= f.input :serial_number, :required => false, :input_html => { :class => 'medium' } %>
+            <% end -%>
+          </td>
+        </tr>
+      </table>
+    </li>
+  </ul>
+  <ul id="form-topic-cost-sales" class="form-topic-pane" style="<%= current_pane_style('cost-sales', @current_link) %>">
+    <li class="form-cost-sales">
+      <% f.inputs do %>
+        <%= f.input :unit_cost_amount, :required => false, :input_html => { :class => 'tiny' } %>
+        <%= f.input :engineering_amount, :required => false, :input_html => { :class => 'tiny' } %>
+        <%= f.input :additional_amount, :required => false, :input_html => { :class => 'tiny' } %>
+        <%= f.input :shipping_amount, :required => false, :input_html => { :class => 'tiny' } %>
+        <%= f.input :unit_sales_amount, :required => false, :input_html => { :class => 'tiny' } %>
+        <li>
+          <%= f.label 'CoS' %>
+          <%= number_to_percentage(inventory_asset.cos || 0, :precision => 0) %>
+        </li>
+      <% end %>
+    </li>
+  </ul>
+  <ul id="form-topic-delivery-so" class="form-topic-pane" style="<%= current_pane_style('delivery-so', @current_link) %>">
+    <li class="form-delivery-so">
+      <table style="table-layout: fixed;">
+        <tr>
+          <td width="50%" valign="top">
+           <% f.inputs do %>
+             <%= f.input :actual_delivery_on,  :as => :string, :required => false, :input_html => { :class => 'medium' } %>
+             <%= f.input :gr_on, :as => :string, :required => false, :input_html => { :class => 'medium' } %>
+             <%= f.input :tr_on, :as => :string, :required => false, :input_html => { :class => 'medium' } %>
+             <%= f.input :tr_assignment, 
+                         :collection => User.recipient_list_for(current_user.site),
+                         :label_method => 'display_name', 
+                         :required => false,
+                         :prompt => 'Select TR Assignment' %>
+             <%= f.input :tr_status, :as => :select, :collection => [['PASS', true], ['FAIL', false]], :label => 'TR Pass/Fail', :prompt => 'Unreviewed', :required => false, :input_html => { :class => 'small' } %>
+            <% end %>
+          </td>
+          <td width="50%" valign="top">
+           <% f.inputs do %>
+             <%= f.input :fo, :required => false, :input_html => { :class => 'medium' } %>
+             <%= f.input :fo_on, :as => :string, :required => false, :input_html => { :class => 'small' } %>
+             <%= f.input :installed_on, :as => :string, :required => false, :input_html => { :class => 'small' } %>
+             <%= f.input :bill_and_hold, :required => false, :input_html => { :class => 'medium' } %>
+             <%= f.input :delivery_on, :as => :string, :required => false, :input_html => { :class => 'small' } %>
+           <% end -%>
+          </td>
+        </tr>
+      </table>
+    </li>
+  </ul>
+  <ul id="form-topic-notes" class="form-topic-pane" style="<%= current_pane_style('notes', @current_link) %>">
+    <li class="form-notes">
+      <% f.inputs do %>
+        <%= f.input :notes, :as => :text, :required => false, :input_html => { :rows => '5' } %>
+        <%= f.input :custom, :as => :text, :required => false, :input_html => { :rows => '5' } %>
+      <% end %>
+    </li>
+  </ul>  
+  <ul id="form-topic-location" class="form-topic-pane" style="<%= current_pane_style('location', @current_link) %>">
+    <li class="form-location">
+      <% f.inputs do %>
+        <%= f.input :site, :collection => current_user.visible_sites, :label_method => 'ancestry_names', :prompt => false %>
+        <%= f.input :tag, :collection => inventory_asset_tag_options_for(inventory_asset, current_user), :prompt => false %>
+        <li>
+          <%= f.label :last_seen_location %>
+          <%= inventory_asset.last_seen_location %>
+        </li>
+        <li>
+          <%= f.label :last_seen_at %>
+          <%= inventory_asset.last_seen_at %>
+        </li>        
+      <% end %>
+    </li>
+  </ul>
+  <div style="clear:both;">
+    <% f.inputs do %>
+      <%= f.commit_button "#{button}" %>
+    <% end -%>
+  </div>
+<% end %>
+
+<% content_for(:head) do %>
+  <%= stylesheet_link_tag 'smoothness.css' %>
+  <%= javascript_include_tag 'jquery-ui-min' %>
+<% end %>
+
+<% content_for(:js) do %>
+  <script type="text/javascript">
+    $(document).ready(function() {
+    	$("#inventory_asset_ordered_on").datepicker();
+      $("#inventory_asset_expected_delivery_on").datepicker();
+      $("#inventory_asset_actual_delivery_on").datepicker();
+      $("#inventory_asset_gr_on").datepicker();
+      $("#inventory_asset_tr_on").datepicker();
+      $("#inventory_asset_fo_on").datepicker();
+      $("#inventory_asset_installed_on").datepicker();
+      $("#inventory_asset_delivery_on").datepicker();
+    });
+  
+    $('.form-topic-link').click(function() {
+      $('.form-topic-link').removeClass('current-form-topic-link');
+      $(this).addClass('current-form-topic-link');
+      $('.form-topic-pane').hide();
+      $('#form-topic-' + $(this).attr('id')).show();
+      $('#current_link').val($(this).attr('id'));
+    });
+  </script>
+<% end %>
+

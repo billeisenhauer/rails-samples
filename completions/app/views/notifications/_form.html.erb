@@ -1,0 +1,66 @@
+<%
+  url = @spec.new_record? ? notifications_path : "/notifications/#{@spec.id}"
+  method = @spec.new_record? ? :post : :put
+%>
+<% semantic_form_for @spec, :url => url, :method => method do |f| %>
+  <%= f.error_messages %>
+  <% f.inputs do %>
+    <%= f.label :site, :required => true %>
+    <%= f.input :site, :collection => current_user.visible_sites, :label => false, 
+                       :label_method => 'ancestry_names',
+                       :include_blank => false %>
+    <%= f.input :name,
+                :hint => 'A descriptive name for the notification.',
+                :input_html => { :class => 'small' } %>
+  <% end %>
+  <label>Recipients<abbr title="required">*</abbr></label>
+  <p class="recipient-hint">Add recipients for this notification.</p>
+  <% f.semantic_fields_for :notification_recipients do |nrf| %>
+    <%= render :partial => 'notification_recipient', :locals => { :f => nrf } %>
+  <% end %>
+  <p style="margin-bottom:2em;"><%= add_recipient_child_link 'Add Recipient', f, :notification_recipients %></p>
+  <label>Criteria</label>
+  <p class="criteria-hint">Add criteria as necessary to select inventory to generate notifications for.</p>
+  <% f.semantic_fields_for :notification_conditions do |ncf| %>
+    <%= render :partial => 'notification_condition', :locals => { :f => ncf } %>
+  <% end %>
+  <p style="margin-bottom:2em;"><%= add_child_link 'Add Criteria', f, :notification_conditions %></p>
+  <% f.inputs do %>
+    <%= f.commit_button "#{button}" %>
+  <% end %>
+<% end %>
+
+<% content_for(:js) do %>
+  <script type="text/javascript">
+    function insert_recipient_fields(link, method, content) {
+      var new_id = new Date().getTime();
+      var regexp = new RegExp("new_" + method, "g");
+      $(link).parent().prepend(content.replace(regexp, new_id));
+    }
+
+    function remove_recipient_fields(link) {
+      var hidden_field = $(link).prev("input[type=hidden]")[0];
+      if (hidden_field) {
+        hidden_field.value = '1';
+      }
+      $(link).parent(".recipient-fields").hide();
+    }
+  
+    function insert_fields(link, method, content) {
+      var new_id = new Date().getTime();
+      var regexp = new RegExp("new_" + method, "g");
+      $(link).parent().prepend(content.replace(regexp, new_id));
+    }
+  
+    function remove_fields(link) {
+      var hidden_field = $(link).prev("input[type=hidden]")[0];
+      if (hidden_field) {
+        hidden_field.value = '1';
+      }
+      $(link).parent(".condition-fields").hide();
+    }
+  </script>
+<% end %>
+
+
+ 

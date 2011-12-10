@@ -1,0 +1,18 @@
+<tr id="user-<%= user.id %>" class="<%= cycle("odd", "even") %>">
+  <td class="cb column-cb"><%= check_box_tag "user_ids[]", user.id, false, :class => 'toggle-target', :id => "user_ids_#{user.id}" %></td>
+	<td class="username column-username">
+	  <%= link_to(user.username, user_path(user)) %>
+	  <div class="row-actions">
+      <span class="edit"><%= link_to 'Edit', edit_user_path(user) %> |</span>
+      <% unless current_user == user -%>
+        <span class="delete"><%= link_to("Delete", { :action => "destroy", :id => user },
+          :confirm => "Are you sure you want to delete this user?",
+          :method => :delete) %> |</span>
+      <% end -%>
+      <span class="view"><%= link_to 'View', user_path(user) %></span>
+    </div>
+	</td>
+	<td class="role column-role"><%= h user.role_name %></td>
+	<td class="sites column-sites"><%= sites_for(user) %></td>
+	<td class="last-login-at column-last-login-at"><%= last_login_at_for(user) %></td>
+</tr>

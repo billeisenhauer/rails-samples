@@ -1,0 +1,25 @@
+<% semantic_form_for @user do |f| %>
+  <%= f.error_messages %>
+  <% f.inputs do %>
+    <% if @user.new_record? -%>
+      <%= f.input :username, :hint => "Use the Schlumberger network username" %>
+    <% end -%>
+    <%= f.input :name,  :input_html => { :class => 'small' } %>
+    <%= f.input :email, :input_html => { :class => 'small' } %>
+    <%= f.input :time_zone, :input_html => { :class => 'small' } %>
+    <%= f.label :role, :required => true %>
+    <%= f.input :role, :as => :radio, :required => true, :label => false,
+                       :hint => "Assign a role to grant privileges",
+                       :collection => Role.assignable_roles %>
+    <% if can_edit_site?(@user) -%>
+      <%= f.label :visible_sites %>
+      <%= f.input :sites, :label => false,
+                          :collection => current_user.visible_sites,
+                          :label_method => 'ancestry_names',
+                          :hint => "Assign one or more sites." %>
+    <% end -%>
+  <% end %>
+  <% f.inputs do %>
+    <%= f.commit_button "#{button}" %>
+  <% end %>
+<% end %>

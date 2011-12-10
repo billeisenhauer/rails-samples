@@ -1,0 +1,11 @@
+base_url: scims-staging.geoforce.net
+hoptoad_api_key: 872550836c2ef38003b6334531d5c4c7
+comms_url: http://comms.geoforce.net
+session_timeout_period: <%= 30.minutes %>
+proxy_host: 
+proxy_port: 
+ldap_host: ldap.slb.com
+ldap_port: 389
+ldap_base: 'o=slb,c=an'
+ldap_user_class: MockNetworkUser
+site_analytics_id: 

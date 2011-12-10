@@ -1,0 +1,11 @@
+base_url: scims.oilfield.slb.com
+hoptoad_api_key: 31db566c7c2901bf2bf766b74086cc82
+comms_url: http://comms.geoforce.net
+session_timeout_period: <%= 30.minutes %>
+proxy_host: 10.200.19.13
+proxy_port: 8080
+ldap_host: ldap.slb.com
+ldap_port: 389
+ldap_base: 'o=slb,c=an'
+ldap_user_class: NetworkUser
+site_analytics_id: UA-3196896-6

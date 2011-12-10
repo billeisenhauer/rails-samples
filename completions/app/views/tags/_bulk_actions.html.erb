@@ -1,0 +1,14 @@
+<div class="bulk-actions alignleft">
+  <% permitted_to?(:create, :tags) do %>
+    <%= link_to "Add New", new_tag_path %>
+  <% end %>
+  <% permitted_to?(:update, :tags) do %>
+    <% if @tags.any? -%>
+      |
+      <%= select_tag :bulk_action, bulk_actions_options %>
+      <input type="submit" name="bulk_action_change" value="Apply"/>
+      <%= select_tag :bulk_site, bulk_sites_options %>
+      <input type="submit" name="bulk_site_change" value="Change"/>
+    <% end -%>
+  <% end %>
+</div>

@@ -1,0 +1,16 @@
+<h1><%= @tag.tag_number %></h1>
+<p>
+  <strong>Last Location</strong><br/>
+  <%= @tag.last_location %>
+</p>
+<p>
+  <strong>Last Reported At</strong><br/>
+  <%= last_reported_at_for(@tag) %>
+</p>
+<p>
+  <strong>Site</strong><br/>
+  <%= @tag.site_name %>
+</p>
+<p class="back-link">
+  <%= link_to "Back to Tags list", last_tags_path %>
+</p>

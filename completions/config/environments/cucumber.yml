@@ -1,0 +1,4 @@
+base_url: slb.test.geoforce.net
+hoptoad_api_key: no-api-key-for-test
+comms_url: http://comms.geoforce.net
+session_timeout_period: <%= 30.minutes %>

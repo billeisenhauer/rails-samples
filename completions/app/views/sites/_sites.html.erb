@@ -1,0 +1,33 @@
+<% if @sites.any? -%>
+  <%= render :partial => 'search' %>
+<% end -%>
+<% form_tag(bulk_sites_path, :method => :put, :style => 'clear:both;') do %>
+  <%= render :partial => 'bulk_actions' %>
+  <%= will_paginate @sites, :inner_window => 1 %>
+  <div class="clear"/>
+  <% if @sites.any? -%>
+    <table id="sites" class="widefat fixed fixed-width" cellspacing="0" >
+    	<thead>
+     		<tr>
+     		  <th class="manage-column column-cb check-column bulk-action-col" scope="col">
+     		    <%= check_box_tag "tag-bulk-actions", '1', false, :class => 'toggle' %>
+     		  </th>
+     		  <th class="manage-column column-site-name" scope="col">Name</th>
+     		  <th class="manage-column column-site-user-count" scope="col">Users</th>
+     		  <th class="manage-column column-site-tag-count" scope="col">Tags</th>
+     		</tr>
+    	</thead>
+    	<tbody>
+    		<%= render :partial => 'site', :collection => @sites %>
+    	</tbody>			
+    </table>
+    <%= will_paginate @sites, :inner_window => 1 %>
+  <% else -%>
+    <p>No sites found.</p>
+  <% end -%>
+<% end %>
+
+<% content_for(:js_include) do %>
+  <%= javascript_include_tag 'checkbox_toggle.js' %>
+  <%= javascript_include_tag 'emptycell.js' %>
+<% end %>

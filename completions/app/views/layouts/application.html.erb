@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-US" dir="ltr" xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title><%= page_title %></title>
+    
+    <link rel="stylesheet" type="text/css" href="/stylesheets/screen.css" media="screen,projection" rel="stylesheet"/>
+    <!--[if lt IE 7]>
+    	<link rel="stylesheet" type="text/css"  href="/stylesheets/ie.css">	
+    <![endif]-->
+    <%= javascript_include_merged :base %>
+    <%= yield(:head) %>
+	</head>
+	<body id="<%= body_id %>" class="gf-admin js <%= folded_menu_class %>">
+	  <%= render :partial => "shared/hidden" %>
+	  <%= render :partial => "shared/noscript" %>
+	  <div id="gfwrap">
+	    <div id="gfcontent">
+	      <div id="gfhead">
+	        <%= render :partial => "shared/header" %>
+	      </div>
+	      <div id="gfbody">
+	        <ul id="gfmenu">
+  	        <%= render :partial => "shared/primarynav" %>
+  	        <%= render :partial => "shared/secondarynav" %>
+  	      </ul>
+  	      <div id="gfbody-content">
+	          <%= render :partial => "shared/content" %>
+	        </div>
+	      </div>
+	      <div class="clear"></div>
+      </div>
+	  </div>
+	  <div id="footer">
+	    <%= render :partial => "shared/footer" %>
+	  </div>
+    <%= yield :js_include %>
+    <%= yield :js %>
+    <%= render :partial => "shared/analytics" %>
+	</body>	
+</html>

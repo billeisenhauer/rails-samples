@@ -1,0 +1,10 @@
+sqlite3:
+  adapter: sqlite3
+  database: ':memory:'
+
+mysql:
+  adapter: mysql
+  encoding: utf8
+  database:
+  username:
+  password:

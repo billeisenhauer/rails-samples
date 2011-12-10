@@ -1,0 +1,60 @@
+<% 
+  default_params = params.dup
+  default_params[:sorted_by] ||= 'ordered_on'
+%>
+<ul class="list-filters">
+  <% if @red_count > 0 -%>
+    <li>
+      <% link_to(inventory_assets_path(default_params.merge(:for_state => 'red')), :class => 'red') do %>
+        Ordered
+        <span class="count">(<%= @red_count %>)</span>
+      <% end %>
+    </li>    
+  <% end -%>  
+  <% if @yellow_count > 0 -%>
+    <li>
+      <% link_to(inventory_assets_path(default_params.merge(:for_state => 'yellow')), :class => 'yellow') do %>
+        Received
+        <span class="count">(<%= @yellow_count %>)</span>
+      <% end %>
+    </li>    
+  <% end -%>
+  <% if @green_count > 0 -%>
+    <li>
+      <% link_to(inventory_assets_path(default_params.merge(:for_state => 'green')), :class => 'green') do %>
+        Sold
+        <span class="count">(<%= @green_count %>)</span>
+      <% end %>
+    </li>    
+  <% end -%> 
+  <% if @blue_count > 0 -%>
+    <li>
+      <% link_to(inventory_assets_path(default_params.merge(:for_state => 'blue')), :class => 'blue') do %>
+        Installed
+        <span class="count">(<%= @blue_count %>)</span>
+      <% end %>
+    </li>    
+  <% end -%>   
+  <% if @active_count > 0 && params[:since].nil? -%>
+    <li>
+      <% link_to(inventory_assets_path(:since => 2.months.ago)) do %>
+        Active
+        <span class="count">(<%= @active_count %>)</span>
+      <% end %>
+    </li>
+  <% end %>
+  <% if @archived_count > 0 && params[:older].nil? -%>
+    <li>
+      <%
+        archived_params = default_params.dup
+        archived_params.delete(:since)
+        archived_params.delete(:for_state)
+        archived_params.merge!(:older => 2.months.ago)
+      %>
+      <% link_to(inventory_assets_path(archived_params)) do %>
+        Archived
+        <span class="count">(<%= @archived_count %>)</span>
+      <% end %>
+    </li>
+  <% end %>
+</ul>

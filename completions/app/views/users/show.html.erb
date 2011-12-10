@@ -1,0 +1,12 @@
+<h1><%= @user.username %></h1>
+<p>
+  <strong>Role</strong><br/>
+  <%= @user.role_name %>
+</p>
+<p>
+  <strong>Sites</strong><br/>
+  <%= sites_for(@user) %>
+</p>
+<p class="back-link">
+  <%= link_to "Back to Users list", last_users_path %>
+</p>

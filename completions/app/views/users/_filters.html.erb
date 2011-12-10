@@ -1,0 +1,55 @@
+<% 
+  guest_count                  = User.for_site(current_user.site).for_role('Guest').count 
+  champion_count               = User.for_site(current_user.site).for_role('Champion').count
+  administrator_count          = User.for_site(current_user.site).for_role('Administrator').count
+  support_administrators_count = User.for_site(current_user.site).for_role('Support Administrator').count
+  unauthorized_count           = User.unauthorized.count
+%>
+<ul class="list-filters">
+  <li>
+    <% link_to(users_path(:sorted_by => 'username')) do %>
+      All
+      <span class="count">(<%= User.for_site(current_user.site).count %>)</span>
+    <% end %>
+  </li>
+  <% if guest_count > 0 -%>
+    <li>
+      <% link_to(users_path(:for_role => 'Guest', :sorted_by => 'username')) do %>
+        Guests
+        <span class="count">(<%= guest_count %>)</span>
+      <% end %>
+    </li>    
+  <% end -%>  
+  <% if champion_count > 0 -%>
+    <li>
+      <% link_to(users_path(:for_role => 'Champion', :sorted_by => 'username')) do %>
+        Champions
+        <span class="count">(<%= champion_count %>)</span>
+      <% end %>
+    </li>    
+  <% end -%>
+  <% if administrator_count > 0 -%>
+    <li>
+      <% link_to(users_path(:for_role => 'Administrator', :sorted_by => 'username')) do %>
+        Administrators
+        <span class="count">(<%= administrator_count %>)</span>
+      <% end %>
+    </li>    
+  <% end -%> 
+  <% if support_administrators_count > 0 -%>
+    <li>
+      <% link_to(users_path(:for_role => 'Support Administrator', :sorted_by => 'username')) do %>
+        Support Administrators
+        <span class="count">(<%= support_administrators_count %>)</span>
+      <% end %>
+    </li>    
+  <% end -%>   
+  <% if unauthorized_count > 0 -%>
+    <li>
+      <% link_to(users_path(:unauthorized => true, :sorted_by => 'username')) do %>
+        Unauthorized
+        <span class="count">(<%= unauthorized_count %>)</span>
+      <% end %>
+    </li>    
+  <% end -%>
+</ul>

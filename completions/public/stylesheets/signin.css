@@ -1,0 +1,163 @@
+body {
+	color: #464e54;
+	background: #565656;
+}
+
+/* ---( Basic Setup )--- */
+
+h1{font-size:138.5%;}
+
+h2{font-size:123.1%;}
+
+h3{font-size:108%;}
+
+h1,h2,h3{margin:1em 0;}
+
+h1,h2,h3,h4,h5,h6,strong{font-weight:bold;}
+
+abbr,acronym{border-bottom:1px dotted #000;cursor:help;} 
+
+em{font-style:italic;}
+
+caption{margin-bottom:.5em;text-align:center;}
+
+p,fieldset,table,pre{margin-bottom:1em;}
+
+input[type=text],input[type=password],textarea{width:12.25em;*width:11.9em;}
+
+label {font-weight:bold;}
+
+abbr, acronym, .popup {
+	border-bottom:1px dotted #DBD5C5;
+	cursor:help;
+	font-size:90%;
+	font-style:normal;
+	letter-spacing:1px;
+}
+
+abbr[title^="required"] {
+	color: red;
+}
+
+strong {font-weight:bold;}
+
+.odd {background-color: #ddd;}
+
+.center {text-align: center;}
+
+.hidden {position:absolute; left:0px; top:-500px; width:1px; height: 1px; overflow:hidden;}
+hr {display:none;}
+
+/* ---( Sign In Layout )--- */
+
+body#signin {
+	background: #fff;
+}
+
+body#signin #doc {
+	margin: 50px auto;
+	padding: 20px;
+	width: 400px;
+	min-width: 400px;
+	border: 10px solid #565656;
+	color: #464e54;
+	background: #F3F1E9;
+}
+
+#slb-logo {
+	margin-left: -20px;
+}
+
+#gf-logo {
+	float: right;
+}
+
+body#signin #hd {
+	background: #F3F1E9;
+	margin-bottom: 2em;
+}
+
+body#signin #bd {
+	clear: both;
+	border: none;
+}
+
+#user_session_username,
+#user_session_password {
+	width:100%;
+}
+#user_session_username_input p.inline-hints,
+#user_session_password_input p.inline-hints { 
+	color:#666; 
+	margin:0.5em 0 0 0; 
+}
+
+/* ---( Layout )--- */
+
+#doc3 {
+	margin:auto;
+	color: #464e54;
+	background: #F3F1E9;
+} 
+
+#hd {
+	backgroundxxx: #C5E2E9;
+	background: #BBC8D8;
+	padding: 5px 0 0;
+}
+
+.inner {
+	margin: 0 15px;
+}
+
+#bd {
+	color: #464e54;
+	background: #F3F1E9;
+	padding: 1em 0;
+}
+
+/* ---( Header )--- */ 
+
+#nav {
+	clear: both;
+}
+
+#branding {
+	margin-bottom: 10px;
+}
+
+#logo img {
+	float: left;
+}
+
+#secondary-nav .yui-nav {
+	float: right;
+}
+
+#hd h1 {
+	text-align: center;
+	font-size: 130%;
+}
+
+/* ---( Flash )--- */
+
+h4 {
+	border:1px solid #CCCCCC;
+	font-size:1em;
+	margin-top: 4px;
+	margin-bottom:12px;
+	padding:5px 5px 5px 30px;
+	text-align:left;
+}
+
+h4.notice {
+	background:#E2F9E3 url(/images/alertgood_icon.gif) no-repeat scroll left center;
+	border-color:#9C9;
+	color:#060;
+}
+
+h4.error {
+	background:#C00 url(/images/alertbad_icon.gif) no-repeat scroll left center;
+	border-color:#C99;
+	color:#FFF;
+}

@@ -1,0 +1,36 @@
+<h1>Page Not Found</h1>
+<p>
+  The page you were looking for does not exist.  Since you didn't find what
+  you were looking for, here are a few helpful links:<br/>
+</p>
+<p>
+  <ul>
+    <% if current_user? %>
+      <% permitted_to?(:show, :sites) do %>
+        <li><%= link_to('Sites', sites_path, :title => 'Sites') %></li>
+      <% end %>
+      <% permitted_to?(:show, :categories) do %>
+        <li><%= link_to('Categories', categories_path, :title => 'Categories') %></li>
+      <% end %>
+      <% permitted_to?(:show, :users) do %>
+        <li><%= link_to('Users', users_path) %></li>
+      <% end %>
+      <% permitted_to?(:show, :tag_readers) do %>
+        <li><%= link_to('Tag Readers', tag_readers_path) %></li>
+      <% end %>
+      <% permitted_to?(:show, :tags) do %>
+        <li><%= link_to('Tags', tags_path) %></li>
+      <% end %>
+      <% permitted_to?(:show, :inventory_assets) do %>
+        <li><%= link_to('Inventory Assets', inventory_assets_path) %></li>
+      <% end %>
+      <% permitted_to?(:show, :notifications) do %>
+        <li><%= link_to('Notifications', notifications_path, :title => 'Notifications') %></li>
+      <% end %>
+      <li><%= link_to('Sign Out', signout_path) %></li>
+    <% else %>
+      <li><%= link_to('Sign In', signin_path) %></li>
+    <% end %>
+  </ul>
+</p>
+

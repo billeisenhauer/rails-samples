@@ -1,0 +1,1 @@
+$("td:empty").html("&nbsp;");

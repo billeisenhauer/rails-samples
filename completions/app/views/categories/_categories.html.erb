@@ -1,0 +1,31 @@
+<% if @categories.any? -%>
+  <%= render :partial => 'search' %>
+<% end -%>
+<% form_tag(bulk_categories_path, :method => :put, :style => 'clear:both;') do %>
+  <%= render :partial => 'bulk_actions' %>
+  <%= will_paginate @categories, :inner_window => 1 %>
+  <div class="clear"/>
+  <% if @categories.any? -%>
+    <table id="sites" class="widefat fixed fixed-width" cellspacing="0" >
+    	<thead>
+     		<tr>
+     		  <th class="manage-column column-cb check-column bulk-action-col" scope="col">
+     		    <%= check_box_tag "category-bulk-actions", '1', false, :class => 'toggle' %>
+     		  </th>
+     		  <th class="column-category-name" scope="col"><%= sortable_heading('Name', 'ancestry_names', parameterized_link) %></th>
+     		</tr>
+    	</thead>
+    	<tbody>
+    		<%= render :partial => 'category', :collection => @categories %>
+    	</tbody>			
+    </table>
+    <%= will_paginate @categories, :inner_window => 1 %>
+  <% else -%>
+    <p>No categories found.</p>
+  <% end -%>
+<% end %>
+
+<% content_for(:js_include) do %>
+  <%= javascript_include_tag 'checkbox_toggle.js' %>
+  <%= javascript_include_tag 'emptycell.js' %>
+<% end %>

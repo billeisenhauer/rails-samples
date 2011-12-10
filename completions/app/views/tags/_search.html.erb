@@ -1,0 +1,5 @@
+<% form_tag(tags_path, :method => :get, :id => 'search-box') do %>
+  <%= text_field_tag('search', @list_options[:search]) %>
+  <input name="action" type="submit" value="Search" />
+  <input name="search_action" type="submit" value="Clear" />
+<% end %>

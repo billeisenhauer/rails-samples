@@ -1,0 +1,16 @@
+development:
+  host: ldap.slb.com
+ 
+test: &TEST
+  host: ldap.slb.com
+  
+staging:
+  host: ldap.slb.com
+  base: 'o=slb,c=an'
+ 
+production:
+  host: ldap.slb.com
+  base: 'o=slb,c=an'
+  
+cucumber:
+  <<: *TEST

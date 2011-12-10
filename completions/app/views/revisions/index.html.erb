@@ -1,0 +1,28 @@
+<h1><%= @asset.audits.size %> Revisions for <%=h asset_name_for(@asset) %></h1>
+<ul id="revision-list">
+<% @asset.audits.reverse.each do |audit| %>
+  <li class="revision">
+    <%= audit.action.capitalize %> by <%= user_link_for(audit) %> at <%= audit.created_at.to_s(:us_with_time) %>
+    <% if audit.action == 'update' && audit.changes.respond_to?(:keys) -%>
+      <ul>
+      <% audit.changes.keys.sort.each do |key| %>
+        <% 
+          next unless audit.changes[key].first && audit.changes[key].last
+          from = audit.changes[key].first
+          to   = audit.changes[key].last
+          next if from == to
+          next if (from.respond_to?(:empty?) && from.empty?) && (to.respond_to?(:empty?) && to.empty?) 
+        %>
+        <li>
+          <strong><%= InventoryAsset.human_attribute_name(key) %></strong> changed from <strong><%= field_value_for(key, from) %></strong> to <strong><%= field_value_for(key, to) %></strong>
+        </li>
+      <% end %>
+      </ul>
+    <% end %>
+  </li>
+<% end %>
+</ul>
+<p class="back-link">
+  <%= link_to "Edit #{asset_name_for(@asset)}", edit_inventory_asset_path(@asset) %> |
+  <%= link_to "Back to Inventory Assets list", last_inventory_assets_path %>
+</p>

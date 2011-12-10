@@ -1,0 +1,17 @@
+<div class="condition-fields">
+  <%= f.input :field, 
+              :as => :select, 
+              :collection => field_select_options, 
+              :prompt => 'Select Field',
+              :label => false, 
+              :wrapper_html => { :style => "display:inline;" } %>
+  <%= f.input :operator,  
+              :as => :select, 
+              :collection => operator_select_options, 
+              :label => false, 
+              :wrapper_html => { :style => "margin-left:5px;display:inline;" } %>
+  <%= f.input :value, 
+              :label => false, 
+              :wrapper_html => { :style => "margin:0 5px;display:inline;" } %>
+  <%= remove_child_link "remove", f %>
+</div>

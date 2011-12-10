@@ -1,0 +1,14 @@
+<div class="bulk-actions alignleft">
+  <% permitted_to?(:create, :notifications) do %>
+    <%= link_to "Add New", new_notification_path %>
+  <% end %>
+  <% permitted_to?(:update, :notifications) do %>
+    <% if @specs.any? -%>
+      |
+      <%= select_tag :bulk_action, bulk_actions_options %>
+      <input type="submit" name="bulk_action_change" value="Apply"/>
+      <%= select_tag :bulk_site, bulk_sites_options %>
+      <input type="submit" name="bulk_site_change" value="Change"/>
+    <% end -%>
+  <% end %>
+</div>

@@ -1,0 +1,8 @@
+<div class="bulk-actions alignleft">
+  <%= link_to "Add New", new_site_path %>
+  <% if @sites.any? -%>
+    |
+    <%= select_tag :bulk_action, bulk_actions_options %>
+    <input type="submit" name="bulk_action_change" value="Apply"/>
+  <% end -%>
+</div>

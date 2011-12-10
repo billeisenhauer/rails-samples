@@ -1,0 +1,8 @@
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title><%= page_title %></title>
+<%= yield(:head) %>
+<%= stylesheet_link_merged :base %>
+<!--[if lte IE 7]>
+  <%= stylesheet_link_tag 'ie.css' %>
+<![endif]-->
+<%= javascript_include_merged :base %>

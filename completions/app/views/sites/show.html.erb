@@ -1,0 +1,8 @@
+<h1><%= @site.name %></h1>
+<p>
+  <strong>Site</strong><br/>
+  <%= display_site_descendants(@site) %>
+</p>
+<p class="back-link">
+  <%= link_to "Back to Sites list", last_sites_path %>
+</p>

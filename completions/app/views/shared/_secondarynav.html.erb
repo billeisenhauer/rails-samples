@@ -1,0 +1,62 @@
+<% permitted_to?(:show, :sites) do %>
+  <li class="menu-top menu-top-first <%= current_menu('sites') %>" id="menu-sites">
+  	<div class="gf-menu-image">
+  	  <%= link_to('<br />', sites_path, :title => 'Sites') %>
+  	</div>
+  	<div class="gf-menu-toggle"><br /></div>
+  	<%= link_to('Sites', sites_path, :class => "gf-has-submenu open-if-no-js menu-top menu-top-first #{current_menu('sites')}", :tabindex => "1") %>
+  </li>
+<% end %>
+<% permitted_to?(:show, :categories) do %>
+  <li class="menu-top <%= current_menu('categories') %>" id="menu-categories">
+  	<div class="gf-menu-image">
+  	  <%= link_to('<br />', categories_path, :title => 'Categories') %>
+  	</div>
+  	<div class="gf-menu-toggle"><br /></div>
+  	<%= link_to('Categories', categories_path, :class => "gf-has-submenu open-if-no-js menu-top menu-top-first #{current_menu('categories')}", :tabindex => "1") %>
+  </li>
+<% end %>
+<% permitted_to?(:show, :users) do %>
+  <li class="menu-top <%= current_menu('users') %>" id="menu-users">
+  	<div class="gf-menu-image">
+  	  <%= link_to('<br />', users_path) %>
+  	</div>
+  	<div class="gf-menu-toggle"><br /></div>
+  	<%= link_to('Users', users_path, :class => "gf-has-submenu menu-top #{current_menu('users')}", :tabindex => "1") %>
+  </li>
+<% end %>
+<% permitted_to?(:show, :tag_readers) do %>
+  <li class="menu-top <%= current_menu('tags') %>" id="menu-tag-readers">
+  	<div class="gf-menu-image">
+  	  <%= link_to('<br />', tag_readers_path, :title => 'Tag Readers') %>
+  	</div>
+  	<div class="gf-menu-toggle"><br /></div>
+  	<%= link_to('Tag Readers', tag_readers_path, :class => "gf-has-submenu menu-top #{current_menu('tag-readers')}", :tabindex => "1") %>
+  </li>
+<% end %>
+<% permitted_to?(:show, :tags) do %>
+  <li class="menu-top <%= current_menu('tags') %>" id="menu-tags">
+  	<div class="gf-menu-image">
+  	  <%= link_to('<br />', tags_path, :title => 'Tags') %>
+  	</div>
+  	<div class="gf-menu-toggle"><br /></div>
+  	<%= link_to('Tags', tags_path, :class => "gf-has-submenu menu-top #{current_menu('tags')}", :tabindex => "1") %>
+  </li>
+<% end %>
+<% permitted_to?(:show, :notifications) do %>
+  <li class="menu-top <%= current_menu('notifications') %>" id="menu-notifications">
+  	<div class="gf-menu-image">
+  	  <%= link_to('<br />', notifications_path, :title => 'Notifications') %>
+  	</div>
+  	<div class="gf-menu-toggle"><br /></div>
+  	<%= link_to('Notifications', notifications_path, :class => "gf-has-submenu open-if-no-js menu-top menu-top-first #{current_menu('notifications')}", :tabindex => "1") %>
+  </li>
+<% end %>
+<li class="menu-top menu-top-last <%= current_menu('profile') %>" id="menu-profile">
+	<div class="gf-menu-image">
+	  <%= link_to('<br />', edit_profile_path, :title => 'Your Profile') %>
+	</div>
+	<div class="gf-menu-toggle"><br /></div>
+	<%= link_to('Profile', edit_profile_path, :class => "gf-has-submenu open-if-no-js menu-top menu-top-first #{current_menu('profile')}", :tabindex => "1") %>
+</li>
+

@@ -1,0 +1,9 @@
+base_url: completions.local
+comms_url: http://comms.geoforce.net
+session_timeout_period: <%= 8.hours %>
+proxy_host: 
+proxy_port: 
+ldap_host: ldap.slb.com
+ldap_port: 389
+ldap_base: 'o=slb,c=an'
+ldap_user_class: MockNetworkUser

@@ -1,0 +1,7 @@
+<%= javascript_include_tag 'ga.js' %>
+<script type="text/javascript">
+  try {
+  var pageTracker = _gat._getTracker("<%= AppConfig.site_analytics_id %>");
+  pageTracker._trackPageview();
+  } catch(err) {}
+</script>

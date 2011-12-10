@@ -1,0 +1,38 @@
+<h1>Inventory Asset</h1>
+<p>
+  <strong>SWPS PO #</strong><br/>
+  <%= @inventory_asset.po_number %>
+</p>
+<p>
+  <strong>Vendor</strong><br/>
+  <%= @inventory_asset.vendor %>
+</p>
+<p>
+  <strong>RFQ #</strong><br/>
+  <%= @inventory_asset.rfq_number %>
+</p>
+<p>
+  <strong>Description</strong><br/>
+  <%= @inventory_asset.description %>
+</p>
+<p>
+  <strong>Client</strong><br/>
+  <%= @inventory_asset.client_name %>
+</p>
+<p>
+  <strong>Project</strong><br/>
+  <%= @inventory_asset.project %>
+</p>
+<p>
+  <strong>Installed Date</strong><br/>
+  <%= mmddyy(@inventory_asset.installed_on) %>
+</p>
+<p>
+  <strong>Notes</strong><br/>
+  <%= @inventory_asset.notes %>
+</p>
+
+<p class="back-link">
+  <%= link_to "Revisions", inventory_asset_revisions_path(@inventory_asset) %> |
+  <%= link_to "Back to Inventory Assets list", last_inventory_assets_path %>
+</p>

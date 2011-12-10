@@ -1,0 +1,10 @@
+<div class="bulk-actions alignleft">
+  <%= link_to "Add New", new_inventory_asset_path %> |
+  <%= link_to "Import", new_import_inventory_assets_path %> |
+  <%= link_to "Export", export_inventory_assets_path %>
+  <% if @inventory_assets.any? -%>
+    |
+    <%= select_tag :bulk_action, bulk_actions_options %>
+    <input type="submit" name="bulk_action_change" value="Apply"/>
+  <% end -%>
+</div>

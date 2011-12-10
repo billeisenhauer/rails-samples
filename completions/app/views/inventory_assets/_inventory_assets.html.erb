@@ -1,0 +1,83 @@
+<% if @inventory_assets.any? -%>
+  <%= render :partial => 'filters' %>
+  <%= render :partial => 'search' %>
+<% end -%>
+<% form_tag(bulk_inventory_assets_path, :method => :put, :style => 'clear:both;') do %>
+  <%= render :partial => 'bulk_actions' %>
+  <%= will_paginate @inventory_assets, :inner_window => 1 %>
+  <div class="clear"></div>
+  <% if @inventory_assets.any? -%>
+    <div id="inventory_assets_wrapper">
+      <table id="inventory_assets" class="widefat scrollable" cellspacing="0" >
+      	<thead>
+       		<tr>
+       		  <th class="column-cb check-column bulk-action-col" scope="col">
+       		    <%= check_box_tag "inventory-asset-bulk-actions", '1', false, :class => 'toggle' %>
+       		  </th>
+       		  <th class="column-actions" scope="col">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Actions&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+       		  <th class="column-status" scope="col"><%= sortable_heading('Code', 'state', parameterized_link) %></th>
+            <th class="column-pe" scope="col"><%= sortable_heading('PE', 'pe', parameterized_link) %></th>
+            <th class="column-client" scope="col"><%= sortable_heading('Client', 'client_name', parameterized_link) %></th>
+            <th class="column-project" scope="col"><%= sortable_heading('Project', 'project', parameterized_link) %></th>
+            <th class="column-ocs-g" scope="col"><%= sortable_heading('OCS-G', 'ocs_g', parameterized_link) %></th>
+            <th class="column-field" scope="col"><%= sortable_heading('Field', 'field', parameterized_link) %></th>
+            <th class="column-well" scope="col"><%= sortable_heading('Well', 'well', parameterized_link) %></th>
+            <th class="column-rfq-number" scope="col"><%= sortable_heading('RFQ #', 'rfq_number', parameterized_link) %></th>
+            <th class="column-vendor" scope="col"><%= sortable_heading('Vendor / Supplier', 'vendor', parameterized_link) %></th>
+            <th class="column-po-number" scope="col"><%= sortable_heading('SWPS<br/>PO #', 'po_number', parameterized_link) %></th>
+            <th class="column-ordered-on" scope="col"><%= sortable_heading('Order Date', 'ordered_on', parameterized_link) %><%= '&nbsp;' * 10 %></th>
+            <th class="column-days-lead-time" scope="col"><%= sortable_heading('Lead Time<br/>Days', 'days_lead_time', parameterized_link) %></th>
+            <th class="column-expected-delivery-on" scope="col"><%= sortable_heading('Expected<br/>Delivery Date', 'expected_delivery_on', parameterized_link) %><%= '&nbsp;' * 10 %></th>
+            <th class="column-category" scope="col"><%= sortable_heading('Category', 'category', parameterized_link) %></th>
+            <th class="column-part" scope="col"><%= sortable_heading('Part #', 'part_number', parameterized_link) %></th>
+            <th class="column-description" scope="col"><%= sortable_heading('Description', 'description', parameterized_link) %><%= '&nbsp;' * 15 %></th>
+            <th class="column-quantity-ordered" scope="col"><%= sortable_heading('Qty Ordered', 'quantity_ordered', parameterized_link) %></th>
+            <th class="column-quantity-received" scope="col"><%= sortable_heading('Qty Received', 'quantity_received', parameterized_link) %></th>
+            <th class="column-quantity-installed" scope="col"><%= sortable_heading('Qty Installed', 'quantity_installed', parameterized_link) %></th>
+            <th class="column-quantity-on-location" scope="col"><%= sortable_heading('Qty on<br/>Location', 'quantity_on_location', parameterized_link) %></th>
+            <th class="column-measurement-unit" scope="col"><%= sortable_heading('Measurement<br/>Unit', 'measurement_unit', parameterized_link) %></th>
+            <th class="column-serial-number" scope="col"><%= sortable_heading('Serial #', 'serial_number', parameterized_link) %><%= '&nbsp;' * 15 %></th>
+            <th class="column-tag_number" scope="col"><%= sortable_heading('Tag<br/>Number', 'tag_number', parameterized_link) %></th>
+            <th class="column-last-seen-location" scope="col"><%= sortable_heading('Last Seen<br/>Location', 'last_seen_location', parameterized_link) %></th>
+            <th class="column-last-seen-at" scope="col"><%= sortable_heading('Last Seen<br/>Date', 'last_seen_at', parameterized_link) %><%= '&nbsp;' * 10 %></th>
+            <th class="column-unit-cost-amount" scope="col"><%= sortable_heading('Unit', 'unit_cost_amount', parameterized_link) %></th>
+            <th class="column-engineering-amount" scope="col"><%= sortable_heading('Engineering', 'engineering_amount', parameterized_link) %></th>
+            <th class="column-additional-amount" scope="col"><%= sortable_heading('Additional', 'additional_amount', parameterized_link) %></th>
+            <th class="column-shipping-amount" scope="col"><%= sortable_heading('Shipping', 'shipping_amount', parameterized_link) %></th>
+            <th class="column-total-cost-amount" scope="col"><%= sortable_heading('Total<br/>Cost', 'total_cost_amount', parameterized_link) %></th>
+            <th class="column-unit-sales-amount" scope="col"><%= sortable_heading('Unit', 'unit_sales_amount', parameterized_link) %></th>
+            <th class="column-total-sales-amount" scope="col"><%= sortable_heading('Total<br/>Sales', 'total_sales_amount', parameterized_link) %></th>
+            <th class="column-cos" scope="col"><%= sortable_heading('CoS', 'cos', parameterized_link) %></th>
+            <th class="column-actual-delivery-on" scope="col"><%= sortable_heading('Actual Delivery', 'actual_delivery_on', parameterized_link) %><%= '&nbsp;' * 10 %></th>
+            <th class="column-gr" scope="col"><%= sortable_heading('GR', 'gr', parameterized_link) %></th>
+            <th class="column-gr-on" scope="col"><%= sortable_heading('GR Date', 'gr_on', parameterized_link) %>&nbsp;&nbsp;&nbsp;</th>
+            <th class="column-tr-on" scope="col"><%= sortable_heading('TR Date', 'tr_on', parameterized_link) %></th>
+            <th class="column-tr-assignment" scope="col"><%= sortable_heading('TR Assignment', 'tr_assignment', parameterized_link) %></th>
+            <th class="column-tr-status" scope="col"><%= sortable_heading('TR Status', 'tr_status', parameterized_link) %></th>
+            <th class="column-fo" scope="col"><%= sortable_heading('FO', 'fo', parameterized_link) %>&nbsp;&nbsp;&nbsp;</th>
+            <th class="column-fo-on" scope="col"><%= sortable_heading('FO Date', 'fo_on', parameterized_link) %>&nbsp;&nbsp;&nbsp;</th>
+            <th class="column-installed-on" scope="col"><%= sortable_heading('Installed<br/>Date', 'installed_on', parameterized_link) %><%= '&nbsp;' * 10 %></th>
+            <th class="column-bill-and-hold" scope="col"><%= sortable_heading('Bill and Hold', 'bill_and_hold', parameterized_link) %></th>
+            <th class="column-delivery-on" scope="col"><%= sortable_heading('Delivery<br/>Date', 'delivery_on', parameterized_link) %><%= '&nbsp;' * 10 %></th>
+            <th class="column-notes" scope="col"><%= sortable_heading('Additional Comments', 'notes', parameterized_link) %><%= '&nbsp;' * 15 %></th>
+            <th class="column-attachment" scope="col">Attachment</th>
+          </tr>
+      	</thead>
+      	<tbody>
+      		<%= render :partial => 'inventory_asset', :collection => @inventory_assets %>
+      	</tbody>			
+      </table>
+    </div>
+    <%= will_paginate @inventory_assets, :inner_window => 1 %>
+  <% else -%>
+    <p>No inventory assets found.</p>
+  <% end -%>
+<% end %>
+<% if @inventory_assets.any? -%>
+  <%= render :partial => 'per_page' %>
+<% end -%>
+
+<% content_for(:js_include) do %>
+  <%= javascript_include_tag 'checkbox_toggle.js' %>
+  <%= javascript_include_tag 'emptycell.js' %>
+<% end %>

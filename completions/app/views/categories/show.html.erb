@@ -1,0 +1,8 @@
+<h1><%= @category.name %></h1>
+<p>
+  <strong>Category</strong><br/>
+  <%= @category.ancestry_names %>
+</p>
+<p class="back-link">
+  <%= link_to "Back to Categories list", last_categories_path %>
+</p>

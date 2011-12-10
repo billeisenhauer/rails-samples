@@ -1,0 +1,155 @@
+INTRODUCTION
+
+This application maintains information about inventory that has been acquired
+by Schlumberger to ultimately be sold off to third parties.  This functionality
+was previously managed by independent spreadsheets which were shared around
+as needed.
+
+MODEL / DATA
+============
+
+SITES
+
+A Site is akin to an Account in Geoforce.  A Site is meant to have a geographic
+coverage, but doesn't necessarily have to.  A Site can have any number of
+sub-sites.  They are essentially hierarchy-based.  The root Site is the
+'Schlumberger' site.  Thereafter, sites are broken down by geo-markets.
+
+USERS
+
+A User represents a user of the system.  A User must have one Role which then
+dictates what capabilities they have when using the system.  In a similar way,
+a User must be a member to a Site.  A Site membership is accomplished through
+the SiteMembership association class.  Site membership enables visibility to 
+a site's users and inventory assets.  It further enables visibility to a site's
+downward hierarchy.
+
+ROLES
+
+Certain actions are privileged actions.  These privilege to run these actions
+is governed by roles which aggregate certain privileges.  In this system, a
+user can have only one role.  The list of roles are:
+
+- Guest
+- Champion
+- Administrator
+- Support Administrator
+
+GUEST is a bare-bones, nearly privilege-free role which gets assigned to any
+new user who is able to authenticate in, but hasn't been assigned any of the
+other proper roles or a site membership.  If they have a site membership, they
+only have read-only access to inventory information.  They can also manage
+their profile.
+
+CHAMPION users have full access to inventory data and can also set up
+notifications.  They can also do everything that GUESTS can do.
+
+ADMINISTRATOR users have access to tags and users and can manage each.  They
+can also do everything that CHAMPION users can.
+
+SUPPORT ADMINISTRATOR users should be limited to Geoforce personnel.  Originally,
+this role was intended to support tags, users, and tag_readers by Geoforce
+personnel.  However, it has become necessary to expand this role to be fully
+capable of doing everything.  This enables proper support to be offered.
+
+INVENTORY ASSETS
+
+The key data is contained within the inventory_assets table and thus the
+InventoryAsset model.  This model contains a huge amount of fields and must be
+searchable on nearly every one of these fields.  Inventory goes through a life
+cycle based upon the presence of certain field values.  As such, inventory has
+state values.
+
+Inventory can either be tagged or untagged with RFID tags.  If tagged, an
+inventory asset will reflect the location as reflected by the tag's reader.
+
+CATEGORIES
+
+Categories are qualifiers for inventory assets.  An inventory asset can have
+only one category.  Categories can be n-level and are scoped to sites.
+
+NOTIFICATIONS
+
+Users are interested in inventory state and location changes.  To accommodate
+this, users can configure notifications to be sent based upon a set of criteria
+which identifies one or more inventory assets along with one or more Schlumberger
+email addresses.  Notifications are sent in the form of emails.
+
+TAGS
+
+Tags are equivalent to tags in core Geoforce.  They are the tags that are 
+bound to assets to enable tracking.  Tags are scoped to a site, so they cannot
+be seen by all users unless they too are assigned to that site or a site above
+it in the hierarchy.
+
+TAG READERS
+
+Tag Readers are the recorded representation of the physical tag readers that
+are deployed at the various sites.  The location entered for a reader is the
+location given to a tag when the tag is read by a certain reader.
+
+TAG READINGS
+
+Tag readings are the recordings of a tag that has been read.  These readings 
+are acquired by calling out to a COMMS-based web service.
+
+
+TECHNICAL NOTES
+===============
+
+AUTHENTICATION
+
+Authentication is implemented using the AuthLogic gem.  User data is contained
+with the Users table, but the password is deferred to SLB's LDAP server.  The
+net-ldap gem is used to accomplish the integration and there is a swappable
+class used to accomplish the integration -- this is useful for testing outside
+of the SLB network where the LDAP server is unavailable.
+
+AUTHORIZATION
+
+The Declarative Authorization gem is used to manage authorization in conjunction
+with a single Role assigned to a User.  The rules are contained in the 
+authorization_rules.rb file contained in the config directory.  The rules are
+straight-forward to understand.  The Guest role has minimal privileges and is
+defined first in the the file.  The remaining roles progressively add privileges
+and build on top of each other.
+
+SEARCHING
+
+It was required to be able to search on almost any field in the InventoryAsset
+model.  To solve this pseuod-elegantly, the SearchLogic gem was used to enable
+compact code to be written.  That combined with a little meta-programming is
+used in the 'search' method in the InventoryAsset model.  The downside to this
+approach is the potentially expensive query required.  At present, the volume
+of data is small enough such that this is not currently a problem.  Once more
+data is added, it might be a better approach to use separate document indexing
+(e.g. sphinx, solr, etc).
+
+NOTIFICATIONS
+
+It was required to be able to configure email notifications to be sent based 
+upon state changes or inventory movement.  The notifications were required to
+be configured based upon complex criteria which could involve nearly every
+field of the InventoryAsset model.  This is accomplished through a combination
+of two models: the NotificationSpecification and the NotificationCondition.
+The spec aggregates a list of conditions.  If every condition is true, then
+the spec holds for a group of inventory assets.  Notifications are sent out to
+recipients listed for the specification.
+
+TAG READING ACQUISITION
+
+The TagReading class doubles as a web service client using the HTTParty gem.
+There is code within that class which acquires, parses, and stores tag readings.
+When tag readings are created, both the reading tag reader and subject tag are
+updated.  When a tag is updated, it in turn updates its inventory asset if it
+has been attached to one.
+
+Tag readings are acquired from the COMMS web service every 30 minutes at :5 and
+:35 after the hour.
+
+RFID CHECKOUTS
+
+Tag / inventory checkouts occur if the tag has not been seen for over 4 hours
+and if the tag reader has a recent read.  If it happens that the tag reader
+fails to perform any reads, the code will cease to perform any checkouts to
+guard against power outage or COMMS web service failures.

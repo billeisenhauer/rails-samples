@@ -1,0 +1,21 @@
+<tr id="tag-<%= tag.id %>" class="<%= cycle("odd", "even") %>">
+  <td class="cb column-cb"><%= check_box_tag "tag_ids[]", tag.id, false, :class => 'toggle-target', :id => "tag_ids_#{tag.id}" %></td>
+	<td class="tag_number column-tag-number">
+	  <%= link_to(tag.tag_number, tag_path(tag)) %>
+	  <div class="row-actions">
+	    <% permitted_to?(:update, :tags) do %>
+        <span class="edit"><%= link_to 'Edit', edit_tag_path(tag) %> |</span>
+      <% end %>
+      <% permitted_to?(:destroy, :tags) do %>
+        <span class="delete"><%= link_to("Delete", { :action => "destroy", :id => tag },
+          :confirm => "Are you sure you want to delete this tag?",
+          :method => :delete) %> |</span>
+      <% end %>
+      <span class="view"><%= link_to 'View', tag_path(tag) %></span>
+    </div>
+	</td>
+	<td class="site column-site"><%= h tag.site_name %></td>
+	<td class="site column-asset"><%= h tag.inventory_asset_name %></td>
+	<td class="last-reported-at column-last-reported-at"><%= h tag.last_location %></td>
+	<td class="last-reported-at column-last-reported-at"><%= last_reported_at_for(tag) %></td>
+</tr>

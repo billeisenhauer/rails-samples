@@ -1,0 +1,32 @@
+<%= render :partial => 'search' %>
+<% form_tag(bulk_tag_readers_path, :method => :put, :style => 'clear:both;') do %>
+  <%= render :partial => 'bulk_actions' %>
+  <%= will_paginate @tag_readers, :inner_window => 1 %>
+  <div class="clear"/>
+  <% if @tag_readers.any? -%>
+    <table id="tag-readers" class="widefat fixed fixed-width" cellspacing="0" >
+    	<thead>
+     		<tr>
+     		  <th class="manage-column column-cb check-column bulk-action-col" scope="col">
+     		    <%= check_box_tag "tag-reader-bulk-actions", '1', false, :class => 'toggle' %>
+     		  </th>
+     		  <th class="manage-column column-reader" scope="col"><%= sortable_heading('Reader', 'reader', parameterized_link, 'reader asc') %></th>
+     			<th class="manage-column column-site" scope="col"><%= sortable_heading('Site', 'site', parameterized_link) %></th>
+     			<th class="manage-column column-address" scope="col"><%= sortable_heading('Address', 'address', parameterized_link) %></th>
+     			<th class="manage-column column-last-reported-at" scope="col"><%= sortable_heading('Last Reported At', 'last_reported_at', parameterized_link) %></th>
+     		</tr>
+    	</thead>
+    	<tbody>
+    		<%= render :partial => 'tag_reader', :collection => @tag_readers %>
+    	</tbody>			
+    </table>
+    <%= will_paginate @tag_readers, :inner_window => 1 %>
+  <% else -%>
+    <p>No tag readers found.</p>
+  <% end -%>
+<% end %>
+
+<% content_for(:js_include) do %>
+  <%= javascript_include_tag 'checkbox_toggle.js' %>
+  <%= javascript_include_tag 'emptycell.js' %>
+<% end %>

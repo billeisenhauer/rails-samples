@@ -1,0 +1,7 @@
+<h1>Edit <%= @user.username %></h1>
+
+<%= render :partial => 'form', :locals => {:button => 'Update User'} %>
+
+<p class="back-link">
+  <%= link_to "Back to Users list", last_users_path %>
+</p>

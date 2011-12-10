@@ -1,0 +1,6 @@
+<div id="per-page">
+  <% form_tag(per_page_inventory_assets_path, :method => :put) do %>
+    Show <%= text_field_tag('per_page', session[:assets_per_page], :class => 'tiny') %> rows per page
+    <input name="per_page_action" type="submit" value="Apply" />
+  <% end %>
+</div>

@@ -1,0 +1,34 @@
+<% if @specs.any? -%>
+  <%= render :partial => 'search' %>
+<% end -%>
+<% form_tag(bulk_notifications_path, :method => :put, :style => 'clear:both;') do %>
+  <%= render :partial => 'bulk_actions' %>
+  <%= will_paginate @specs, :inner_window => 1 %>
+  <div class="clear"/>
+  <% if @specs.any? -%>
+    <table id="notifications" class="widefat fixed fixed-width" cellspacing="0" >
+    	<thead>
+     		<tr>
+     		  <th class="manage-column column-cb check-column bulk-action-col" scope="col">
+     		    <%= check_box_tag "notification-bulk-actions", '1', false, :class => 'toggle' %>
+     		  </th>
+     		  <th class="manage-column column-notifications-name" scope="col"><%= sortable_heading('Name', 'name', parameterized_link, 'name asc') %></th>
+     			<th class="manage-column column-notifications-site" scope="col"><%= sortable_heading('Site', 'site', parameterized_link) %></th>
+     			<th class="manage-column column-notifications-site" scope="col"><%= sortable_heading('Creator', 'creator', parameterized_link) %></th>
+     			<th class="manage-column column-notifications-recipients" scope="col">Recipients</th>
+     		</tr>
+    	</thead>
+    	<tbody>
+    		<%= render :partial => 'notification', :collection => @specs %>
+    	</tbody>			
+    </table>
+    <%= will_paginate @specs, :inner_window => 1 %>
+  <% else -%>
+    <p>No notifications found.</p>
+  <% end -%>
+<% end %>
+
+<% content_for(:js_include) do %>
+  <%= javascript_include_tag 'checkbox_toggle.js' %>
+  <%= javascript_include_tag 'emptycell.js' %>
+<% end %>

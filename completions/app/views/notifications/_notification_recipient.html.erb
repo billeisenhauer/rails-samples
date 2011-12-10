@@ -1,0 +1,10 @@
+<div class="recipient-fields">
+  <%= f.input :user, 
+              :as => :select, 
+              :collection => User.recipient_list_for(current_user.site),
+              :label_method => 'display_name', 
+              :prompt => 'Select Recipient',
+              :label => false, 
+              :wrapper_html => { :style => "display:inline;" } %>
+  <%= remove_recipient_child_link "remove", f %>
+</div>
